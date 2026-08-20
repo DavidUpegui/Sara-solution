@@ -1,5 +1,6 @@
 import { DraftGenerator } from "@/application/email/generate-draft/DraftGenerator";
 import { DraftRequest } from "@/application/email/generate-draft/DraftRequest";
+import type { GeneratedDraft } from "@/application/email/generate-draft/GeneratedDraft";
 import { GoogleGenAI } from "@google/genai";
 
 import { promises as fs } from "node:fs";
@@ -14,7 +15,7 @@ export class GeminiDraftGenerator implements DraftGenerator {
     });
   }
 
-  async generate(request: DraftRequest): Promise<string> {
+  async generate(request: DraftRequest): Promise<GeneratedDraft> {
 
     const promptPath = path.join(
         process.cwd(),
@@ -48,12 +49,16 @@ export class GeminiDraftGenerator implements DraftGenerator {
       },
     });
 
-    const draft = response.text;
+    const responseText = response.text;
 
-  if (!draft) {
-    throw new Error("Gemini returned an empty response");
-  }
+    if (!responseText) {
+      throw new Error("Gemini returned an empty response");
+    }
 
-    return response.text as string;
+    try {
+      return JSON.parse(responseText) as GeneratedDraft;
+    } catch {
+      throw new Error("Gemini returned an invalid draft JSON response");
+    }
   }
 }

@@ -7,7 +7,7 @@ export class GenerateDraftForEmail {
     private readonly draftGenerator: DraftGenerator
   ) {}
 
-  async execute(emailId: number): Promise<string> {
+  async execute(emailId: number) {
     const email = await this.emailRepository.findById(emailId);
 
     if (!email) {
