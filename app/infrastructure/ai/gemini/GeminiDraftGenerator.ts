@@ -13,7 +13,7 @@ export class GeminiDraftGenerator implements DraftGenerator {
 
   async generate(request: DraftRequest): Promise<string> {
     const response = await this.ai.models.generateContent({
-      model: "gemini-2.5-flash",
+      model: "gemini-3.6-flash",
       contents: `
         Write a draft response to the following email.
 
