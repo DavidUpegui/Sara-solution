@@ -1,5 +1,5 @@
-import { GenerateDraftForEmail } from "@/app/application/email/generate-draft/GenerateDraftForEmail";
-import { GeminiDraftGenerator } from "@/app/infrastructure/ai/gemini/GeminiDraftGenerator";
+import { GenerateDraftForEmail } from "@/application/email/generate-draft/GenerateDraftForEmail";
+import { GeminiDraftGenerator } from "@/infrastructure/ai/gemini/GeminiDraftGenerator";
 import { JsonEmailRepositoryAdapter } from "../infrastructure/data-acces/json/JsonEmailRepositoryAdapter";
 
 const emailRepository = new JsonEmailRepositoryAdapter();

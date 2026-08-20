@@ -1,8 +1,8 @@
 import { promises as fs } from "node:fs";
 import path from "node:path";
 
-import { Email } from "@/app/domain/models/Email";
-import { EmailRepository } from "../../../application/email/get-email/EmailRepository";
+import { Email } from "@/domain/models/Email";
+import { EmailRepository } from "@/application/email/get-email/EmailRepository";
 
 interface EmailJsonData {
   empresa: {

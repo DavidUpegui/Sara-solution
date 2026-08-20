@@ -18,6 +18,8 @@ export class GenerateDraftForEmail {
       sender: email.de,
       subject: email.asunto,
       body: email.cuerpo,
+      date: email.fecha,
+      email: email.de,
     });
 
     return draft;

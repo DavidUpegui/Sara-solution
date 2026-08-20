@@ -1,4 +1,4 @@
-import { generateDraftForEmail } from "@/app/composition/email";
+import { generateDraftForEmail } from "@/composition/email";
 
 export async function POST(request: Request) {
   const body = await request.json();
