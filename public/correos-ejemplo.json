@@ -1,0 +1,217 @@
+{
+  "empresa": {
+    "nombre": "Constructora Aurora S.A.S.",
+    "ciudad": "Medellín, Colombia",
+    "que_hace": "Desarrolla y vende proyectos de vivienda. Hoy tiene tres proyectos activos: Torre Aurora, Mirador del Este y Bosque 47.",
+    "quien_lee_el_correo": "Sara Ruiz, asistente de gerencia. Recibe entre 90 y 130 correos por semana y responde casi todo a mano.",
+    "tono_de_las_respuestas": "Usted, cordial pero directo, sin adornos. Siempre confirma con fecha y responsable. Nunca promete cifras que no estén confirmadas por contabilidad.",
+    "reglas_del_negocio": [
+      "Ninguna respuesta que comprometa plata, fechas de entrega o condiciones contractuales se envía sin que Sara la apruebe.",
+      "Los correos de socios e inversionistas los responde siempre la gerencia, nunca automáticamente.",
+      "Si el correo menciona abogados, demandas o quejas ante autoridades, se marca como crítico y no se responde solo.",
+      "La publicidad y los boletines no se responden."
+    ]
+  },
+  "correos": [
+    {
+      "id": 1,
+      "de": "carlos.mejia@aceroscentral.com",
+      "nombre": "Carlos Mejía · Aceros Central",
+      "fecha": "2026-08-10T08:14:00-05:00",
+      "asunto": "Cotización varilla figurada - Torre Aurora",
+      "cuerpo": "Buenos días Sara, adjunto la cotización de la varilla figurada para la placa del piso 8 de Torre Aurora. Son 14.200 kg a $4.850 el kilo, total $68.870.000 antes de IVA. La cotización tiene validez de 15 días y el tiempo de entrega es de 12 días hábiles desde la orden de compra. Quedo atento a su confirmación."
+    },
+    {
+      "id": 2,
+      "de": "lgarcia@bancolombia.com.co",
+      "nombre": "Lucía García · Banca Empresas",
+      "fecha": "2026-08-10T09:02:00-05:00",
+      "asunto": "Documentación pendiente desembolso crédito constructor",
+      "cuerpo": "Cordial saludo. Para continuar con el desembolso del crédito constructor de Mirador del Este necesitamos los estados financieros con corte a junio de 2026 firmados por revisor fiscal, y el certificado de tradición actualizado del lote. El comité se reúne el jueves 20 de agosto y si no tenemos los documentos antes del martes 18 el caso se aplaza un mes."
+    },
+    {
+      "id": 3,
+      "de": "no-responder@boletinconstruccion.co",
+      "nombre": "Boletín Construcción Colombia",
+      "fecha": "2026-08-10T09:30:00-05:00",
+      "asunto": "5 tendencias en materiales sostenibles que debe conocer",
+      "cuerpo": "Descubra las cinco tendencias que están transformando el sector. Descargue el informe gratuito. Si no desea recibir más correos, haga clic aquí para darse de baja."
+    },
+    {
+      "id": 4,
+      "de": "patricia.londono@gmail.com",
+      "nombre": "Patricia Londoño · compradora apto 604",
+      "fecha": "2026-08-10T10:47:00-05:00",
+      "asunto": "Cuota de agosto ya la pagué",
+      "cuerpo": "Buenos días. Ayer hice la consignación de la cuota de agosto del apartamento 604 de Torre Aurora, $3.200.000, a la cuenta de ahorros que me enviaron. Adjunto el comprobante. Les pido por favor que me actualicen el estado de cuenta porque la semana pasada me llegó un mensaje de cobro y yo ya venía al día. Gracias."
+    },
+    {
+      "id": 5,
+      "de": "jhernandez@inversionesjh.co",
+      "nombre": "Javier Hernández · socio inversionista",
+      "fecha": "2026-08-10T11:20:00-05:00",
+      "asunto": "Informe de avance julio",
+      "cuerpo": "Sara, buen día. No me ha llegado el informe de avance de julio de Bosque 47. Necesito saber cómo va el recaudo, en qué porcentaje va la obra y si seguimos con la proyección de entrega en diciembre. Le agradezco que me lo envíe hoy si es posible, tengo comité con mi familia el miércoles."
+    },
+    {
+      "id": 6,
+      "de": "obra.mirador@aurora.com.co",
+      "nombre": "Andrés Zapata · residente de obra",
+      "fecha": "2026-08-10T12:05:00-05:00",
+      "asunto": "URGENTE se paró la fundida",
+      "cuerpo": "Sara necesito ayuda ya. El mixer no llegó, la cuadrilla lleva dos horas parada y si no fundimos hoy perdemos el día y hay que pagar horas extras el sábado. Llamé a Cementos del Valle y dicen que la orden no salió porque hay una factura vencida. Por favor mirar eso urgente."
+    },
+    {
+      "id": 7,
+      "de": "info@decoluxvitrinas.com",
+      "nombre": "DecoLux Vitrinas",
+      "fecha": "2026-08-10T14:11:00-05:00",
+      "asunto": "Somos su aliado en acabados de lujo",
+      "cuerpo": "Buenas tardes, somos DecoLux, líderes en acabados de lujo para proyectos residenciales. Nos gustaría agendar una reunión para presentarles nuestro portafolio. Tenemos precios especiales para constructoras este mes."
+    },
+    {
+      "id": 8,
+      "de": "mariana.ospina@hotmail.com",
+      "nombre": "Mariana Ospina · interesada",
+      "fecha": "2026-08-10T15:38:00-05:00",
+      "asunto": "Información apartamentos",
+      "cuerpo": "Hola, vi el proyecto Bosque 47 en Instagram y quiero saber precios, cuántas alcobas tienen y si aplican para subsidio. Mi presupuesto está entre 280 y 330 millones. ¿Todavía tienen disponibles?"
+    },
+    {
+      "id": 9,
+      "de": "cobranza@cementosdelvalle.com",
+      "nombre": "Cementos del Valle · cartera",
+      "fecha": "2026-08-11T07:55:00-05:00",
+      "asunto": "Factura FV-88213 vencida hace 22 días",
+      "cuerpo": "Señores Constructora Aurora, la factura FV-88213 por $41.560.000 se encuentra vencida hace 22 días. Su cupo de crédito está bloqueado hasta que se regularice el pago. Agradecemos informar fecha de pago hoy mismo para no reportar la obligación."
+    },
+    {
+      "id": 10,
+      "de": "rgomez@abogadosgr.co",
+      "nombre": "Rodrigo Gómez · abogado",
+      "fecha": "2026-08-11T08:40:00-05:00",
+      "asunto": "Reclamación cliente apartamento 302 - Torre Aurora",
+      "cuerpo": "Actuando como apoderado del señor Óscar Ramírez, comprador del apartamento 302 de Torre Aurora, solicito respuesta formal sobre el retraso en la entrega pactada para el 30 de junio de 2026. De no recibir respuesta en cinco días hábiles procederemos a instaurar la reclamación ante la autoridad competente."
+    },
+    {
+      "id": 11,
+      "de": "compras@ferreteriaelpunto.com",
+      "nombre": "Ferretería El Punto",
+      "fecha": "2026-08-11T09:15:00-05:00",
+      "asunto": "Re: pedido pintura Bosque 47",
+      "cuerpo": "Sara, confirmando el pedido: 340 galones de vinilo tipo 1 color blanco hueso, entrega el viernes 15 en obra. El valor quedó en $18.700.000. Necesito la orden de compra firmada para despachar."
+    },
+    {
+      "id": 12,
+      "de": "sandra.torres@gmail.com",
+      "nombre": "Sandra Torres · compradora apto 1102",
+      "fecha": "2026-08-11T10:22:00-05:00",
+      "asunto": "No puedo pagar la cuota de este mes",
+      "cuerpo": "Buenos días. Les escribo porque me quedé sin trabajo hace tres semanas y no voy a poder pagar la cuota de agosto del apartamento 1102. No quiero perder lo que ya he pagado, llevo 19 millones abonados. ¿Hay alguna forma de aplazar dos meses o de refinanciar? Estoy muy angustiada, por favor ayúdenme."
+    },
+    {
+      "id": 13,
+      "de": "jhernandez@inversionesjh.co",
+      "nombre": "Javier Hernández · socio inversionista",
+      "fecha": "2026-08-11T11:00:00-05:00",
+      "asunto": "Re: Informe de avance julio",
+      "cuerpo": "Sara, insisto con el informe. Y aprovecho: ¿es cierto que hubo un retraso en Torre Aurora? Me lo comentó otro socio y me preocupa porque yo tengo plata en los dos proyectos. Necesito que alguien de la gerencia me llame."
+    },
+    {
+      "id": 14,
+      "de": "notificaciones@camaramedellin.com.co",
+      "nombre": "Cámara de Comercio de Medellín",
+      "fecha": "2026-08-11T13:00:00-05:00",
+      "asunto": "Renovación matrícula mercantil 2026",
+      "cuerpo": "Le recordamos que el plazo para la renovación de su matrícula mercantil vence el 31 de agosto de 2026. Puede realizar el trámite en línea. El valor liquidado para su empresa es de $1.840.000."
+    },
+    {
+      "id": 15,
+      "de": "contabilidad@aurora.com.co",
+      "nombre": "Diana Restrepo · contadora",
+      "fecha": "2026-08-11T14:30:00-05:00",
+      "asunto": "Faltan soportes para cerrar julio",
+      "cuerpo": "Sara, para cerrar julio me faltan los soportes de tres pagos: el anticipo a Aceros Central por $20.000.000, el pago de la interventoría de Mirador por $6.500.000 y una salida de caja menor de $1.230.000 que no tiene factura. Necesito eso antes del viernes o no puedo entregar el informe a la gerencia."
+    },
+    {
+      "id": 16,
+      "de": "camilo.arango@outlook.com",
+      "nombre": "Camilo Arango · interesado",
+      "fecha": "2026-08-11T16:45:00-05:00",
+      "asunto": "Visita sala de ventas",
+      "cuerpo": "Buenas tardes, quisiera visitar la sala de ventas de Mirador del Este este sábado en la mañana. ¿A qué hora abren y necesito cita previa? Voy con mi esposa."
+    },
+    {
+      "id": 17,
+      "de": "seguridad@alertasbancarias-co.net",
+      "nombre": "Alertas Bancarias",
+      "fecha": "2026-08-12T06:12:00-05:00",
+      "asunto": "Su cuenta empresarial será bloqueada en 24 horas",
+      "cuerpo": "Estimado cliente, hemos detectado actividad inusual en su cuenta empresarial. Debe validar sus datos en el siguiente enlace dentro de las próximas 24 horas o su cuenta será suspendida permanentemente. Ingrese aquí con su usuario y clave."
+    },
+    {
+      "id": 18,
+      "de": "interventoria@gestionproyectos.co",
+      "nombre": "Interventoría Gestión Proyectos",
+      "fecha": "2026-08-12T08:20:00-05:00",
+      "asunto": "Acta de comité de obra No. 14 - Mirador del Este",
+      "cuerpo": "Adjunto el acta del comité del 8 de agosto. Quedaron tres compromisos para Aurora: entregar el plano de detalle de fachada antes del 15 de agosto, corregir la ubicación de los ductos del piso 5, y confirmar el proveedor de ascensores. Por favor confirmar recibido y responsable de cada punto."
+    },
+    {
+      "id": 19,
+      "de": "patricia.londono@gmail.com",
+      "nombre": "Patricia Londoño · compradora apto 604",
+      "fecha": "2026-08-12T09:05:00-05:00",
+      "asunto": "Re: Cuota de agosto ya la pagué",
+      "cuerpo": "Buenos días, ayer les mandé el comprobante y todavía no me han contestado. Hoy me volvió a llegar el mensaje de cobro. Por favor revisen, ya es la tercera vez que me pasa y la verdad es incómodo."
+    },
+    {
+      "id": 20,
+      "de": "rrhh@aurora.com.co",
+      "nombre": "Talento humano",
+      "fecha": "2026-08-12T10:00:00-05:00",
+      "asunto": "Vacaciones equipo administrativo",
+      "cuerpo": "Buenos días a todos, recuerden enviar la programación de vacaciones del último trimestre antes del 20 de agosto para poder cuadrar los turnos de la sala de ventas."
+    },
+    {
+      "id": 21,
+      "de": "gerencia@aceroscentral.com",
+      "nombre": "Aceros Central · gerencia",
+      "fecha": "2026-08-12T11:35:00-05:00",
+      "asunto": "Ajuste de precio cotización varilla",
+      "cuerpo": "Sara, buenas. Le escribo porque el precio que le pasó Carlos el lunes ya no aplica: el proveedor nos subió el acero y el kilo queda en $5.120. Si confirman hoy antes de las 5 pm les respetamos el precio anterior. Después de eso toca reliquidar."
+    },
+    {
+      "id": 22,
+      "de": "oscar.ramirez88@gmail.com",
+      "nombre": "Óscar Ramírez · comprador apto 302",
+      "fecha": "2026-08-12T12:50:00-05:00",
+      "asunto": "Ya hablé con mi abogado",
+      "cuerpo": "Llevo dos meses esperando el apartamento que me prometieron entregar el 30 de junio. Nadie me da razón, ya perdí el arriendo del sitio donde estaba. Puse el caso en manos de un abogado y también voy a poner la queja en redes sociales si no me responden esta semana."
+    },
+    {
+      "id": 23,
+      "de": "ventas@aurora.com.co",
+      "nombre": "Equipo comercial",
+      "fecha": "2026-08-12T14:10:00-05:00",
+      "asunto": "Reporte semanal de leads",
+      "cuerpo": "Esta semana entraron 34 interesados: 19 por Instagram, 9 por la valla de la 80 y 6 referidos. De esos, 7 agendaron visita y 2 dejaron separación. El proyecto más consultado sigue siendo Bosque 47."
+    },
+    {
+      "id": 24,
+      "de": "lgarcia@bancolombia.com.co",
+      "nombre": "Lucía García · Banca Empresas",
+      "fecha": "2026-08-13T08:30:00-05:00",
+      "asunto": "Re: Documentación pendiente desembolso crédito constructor",
+      "cuerpo": "Sara, recordando el correo del lunes. Solo me llegó el certificado de tradición, siguen faltando los estados financieros firmados. El martes 18 es la fecha límite real, después de eso no puedo hacer nada."
+    },
+    {
+      "id": 25,
+      "de": "premios@sorteoempresarial.info",
+      "nombre": "Sorteo Empresarial",
+      "fecha": "2026-08-13T09:00:00-05:00",
+      "asunto": "Su empresa fue seleccionada",
+      "cuerpo": "Felicitaciones, su empresa fue seleccionada entre miles para recibir un reconocimiento empresarial 2026. Confirme sus datos y realice el pago de inscripción de $890.000 para aparecer en la edición impresa."
+    }
+  ]
+}

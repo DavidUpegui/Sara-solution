@@ -1,8 +1,12 @@
-import { GenerateDraft } from "../application/email/generate-draft/GenerateDraft";
-import { GeminiDraftGenerator } from "../infrastructure/ai/gemini/GeminiDraftGenerator";
+import { GenerateDraftForEmail } from "@/app/application/email/generate-draft/GenerateDraftForEmail";
+import { GeminiDraftGenerator } from "@/app/infrastructure/ai/gemini/GeminiDraftGenerator";
+import { JsonEmailRepositoryAdapter } from "../infrastructure/data-acces/json/JsonEmailRepositoryAdapter";
 
+const emailRepository = new JsonEmailRepositoryAdapter();
 const draftGenerator = new GeminiDraftGenerator();
 
-export const generateDraft = new GenerateDraft(
-  draftGenerator
-);
+export const generateDraftForEmail =
+  new GenerateDraftForEmail(
+    emailRepository,
+    draftGenerator
+  );

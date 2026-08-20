@@ -18,7 +18,11 @@ interface EmailJsonData {
 
 export class JsonEmailRepositoryAdapter implements EmailRepository {
   async findById(id: number): Promise<Email | null> {
-    const filePath = path.join(process.cwd(), "data", "emails.json");
+    const filePath = path.join(
+      process.cwd(),
+      "public",
+      "correos-ejemplo.json"
+    );
 
     const file = await fs.readFile(filePath, "utf-8");
 
