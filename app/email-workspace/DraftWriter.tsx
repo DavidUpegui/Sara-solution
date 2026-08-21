@@ -5,6 +5,8 @@ type DraftWriterProps = {
   value: string;
   requiresApproval: boolean;
   approvalReason: string;
+  selectedId: number | null;
+  onGenerateDraft: () => void;
   onChange: (value: string) => void;
 };
 
@@ -13,6 +15,8 @@ export default function DraftWriter({
   value,
   requiresApproval,
   approvalReason,
+  selectedId,
+  onGenerateDraft,
   onChange,
 }: DraftWriterProps) {
   return (
@@ -34,8 +38,23 @@ export default function DraftWriter({
       {status === "idle" && (
         <div className="draft-loading">
           <span className="draft-icon">✎</span>
-          <strong>Seleccione un correo</strong>
-          <p>El borrador aparecerá aquí para que pueda revisarlo.</p>
+          <strong>
+            {selectedId === null ? "Seleccione un correo" : "Correo seleccionado"}
+          </strong>
+          <p>
+            {selectedId === null
+              ? "El borrador aparecerá aquí para que pueda revisarlo."
+              : "Genere un borrador con IA cuando esté listo para revisar la respuesta."}
+          </p>
+          {selectedId !== null && (
+            <button
+              type="button"
+              className="primary-button draft-generate-button"
+              onClick={onGenerateDraft}
+            >
+              Generar borrador con IA
+            </button>
+          )}
         </div>
       )}
       {(status === "ready" || status === "error") && (
@@ -66,8 +85,17 @@ export default function DraftWriter({
             <span>Editable</span>
           </div>
           <div className="draft-actions">
-            <button className="secondary-button">Descartar</button>
-            <button className="primary-button">
+            <button
+              type="button"
+              className="secondary-button"
+              onClick={onGenerateDraft}
+            >
+              Generar borrador con IA
+            </button>
+          </div>
+          <div className="draft-actions">
+            <button type="button" className="secondary-button">Descartar</button>
+            <button type="button" className="primary-button">
               Revisar y enviar <span>→</span>
             </button>
           </div>

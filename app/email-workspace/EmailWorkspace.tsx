@@ -22,19 +22,31 @@ export default function EmailWorkspace() {
   const [approvalReason, setApprovalReason] = useState("");
   const [draftStatus, setDraftStatus] = useState<DraftStatus>("idle");
 
-  const selectEmail = useCallback(async (email: ClassifiedEmail) => {
+  const selectEmail = useCallback((email: ClassifiedEmail) => {
     setSelectedId(email.id);
     setDraft("");
     setRequiresApproval(false);
     setApprovalReason("");
+    setDraftStatus("idle");
+  }, []);
+
+  const generateDraft = useCallback(async () => {
+    if (selectedId === null) return;
+
+    setDraft("");
+    setRequiresApproval(false);
+    setApprovalReason("");
     setDraftStatus("loading");
+
     try {
       const response = await fetch("/api/emails/draft", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ emailId: email.id }),
+        body: JSON.stringify({ emailId: selectedId }),
       });
+
       if (!response.ok) throw new Error("Draft request failed");
+
       const data = (await response.json()) as DraftResponse;
       setDraft(data.draft || fallbackDraft);
       setRequiresApproval(data.requiresApproval);
@@ -46,7 +58,7 @@ export default function EmailWorkspace() {
       setApprovalReason("");
       setDraftStatus("error");
     }
-  }, []);
+  }, [selectedId]);
 
   const loadEmails = useCallback(async () => {
     setInboxError(null);
@@ -58,13 +70,13 @@ export default function EmailWorkspace() {
 
       const data = (await response.json()) as EmailData;
       setEmails(data.emails);
-      if (data.emails[0]) void selectEmail(data.emails[0]);
+      if (data.emails[0]) setSelectedId(data.emails[0].id);
     } catch {
       setInboxError("Revise el log del servidor para conocer la causa técnica y vuelva a intentarlo.");
     } finally {
       setIsInboxLoading(false);
     }
-  }, [selectEmail]);
+  }, []);
 
   useEffect(() => {
     fetch("/api/emails")
@@ -75,7 +87,7 @@ export default function EmailWorkspace() {
       .then((data) => {
         setInboxError(null);
         setEmails(data.emails);
-        if (data.emails[0]) void selectEmail(data.emails[0]);
+        if (data.emails[0]) setSelectedId(data.emails[0].id);
       })
       .catch(() => {
         setInboxError("Revise el log del servidor para conocer la causa técnica y vuelva a intentarlo.");
@@ -150,7 +162,7 @@ export default function EmailWorkspace() {
           isLoading={isInboxLoading}
           onQueryChange={setQuery}
           onCategoryChange={setCategoryFilter}
-          onSelectEmail={(email) => void selectEmail(email)}
+          onSelectEmail={selectEmail}
           onRetry={() => void loadEmails()}
         />
         <EmailDetail email={selectedEmail} />
@@ -159,6 +171,8 @@ export default function EmailWorkspace() {
           value={draft}
           requiresApproval={requiresApproval}
           approvalReason={approvalReason}
+          selectedId={selectedId}
+          onGenerateDraft={() => void generateDraft()}
           onChange={setDraft}
         />
       </section>

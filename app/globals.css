@@ -89,6 +89,8 @@ button { cursor: pointer; }
 
 @keyframes spin { to { transform: rotate(360deg); } }
 
+.draft-generate-button { flex: 0 0 auto; height: 36px; margin-top: 19px; padding: 0 16px; border-radius: 5px; font-size: 10px; font-weight: 700; }
+
 @media (max-width: 1100px) {
   .workspace-shell { padding: 0 24px 24px; }.mail-workspace { grid-template-columns: 275px minmax(330px, 1fr); }.draft-panel { grid-column: 1 / -1; border-top: 1px solid var(--line); }.draft-editor { min-height: 240px; }.draft-loading { min-height: 250px; }
 }
