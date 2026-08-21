@@ -58,6 +58,14 @@ export class JsonEmailHistoryRepositoryAdapter implements EmailHistoryRepository
     return this.writeQueue;
   }
 
+  async clear(): Promise<void> {
+    this.writeQueue = this.writeQueue.then(async () => {
+      await fs.writeFile(this.temporaryFilePath, "[]\n", "utf-8");
+      await fs.rename(this.temporaryFilePath, this.filePath);
+    });
+    return this.writeQueue;
+  }
+
   async saveClassificationIfMissing(
     emailId: number,
     classification: EmailClassification,

@@ -59,15 +59,15 @@ button { cursor: pointer; }
 .panel-heading, .draft-heading, .message-toolbar, .email-row-top, .message-footer { display: flex; justify-content: space-between; align-items: center; }
 .panel-heading { padding: 26px 22px 18px; }
 .panel-heading h2, .draft-heading h2 { margin: 6px 0 0; font-size: 17px; letter-spacing: -.025em; }
-.count-badge { display: grid; width: 25px; height: 25px; place-items: center; border-radius: 50%; background: var(--accent-soft); color: var(--accent); font-size: 11px; font-weight: 700; }
+.reset-history-button { position: relative; padding: 6px 11px; border: 1px solid var(--line); border-radius: 5px; background: transparent; color: var(--muted); font-size: 10px; font-weight: 700; }
+.reset-history-button:disabled { opacity: 0.5; cursor: not-allowed; }
+.reset-tooltip { position: absolute; right: 0; top: calc(100% + 8px); width: 220px; padding: 8px 10px; border-radius: 6px; background: var(--ink); color: #fff; font-size: 10px; font-weight: 400; line-height: 1.45; text-align: left; opacity: 0; visibility: hidden; transition: opacity .15s ease; pointer-events: none; z-index: 10; }
+.reset-history-button:hover .reset-tooltip, .reset-history-button:focus-visible .reset-tooltip { opacity: 1; visibility: visible; }
 .search-box { display: flex; align-items: center; gap: 8px; margin: 0 16px; padding: 0 11px; height: 35px; border: 1px solid var(--line); border-radius: 6px; background: var(--surface); color: #aaa49a; }
 .search-box input { flex: 1; min-width: 0; border: 0; outline: 0; background: transparent; color: var(--ink); font-size: 11px; }
 .search-box kbd { color: #aaa49a; font-size: 9px; }
 .category-filter { display: flex; align-items: center; gap: 8px; margin: 10px 16px 0; color: var(--muted); font-size: 10px; }
 .category-filter select { min-width: 0; flex: 1; height: 30px; padding: 0 8px; border: 1px solid var(--line); border-radius: 5px; outline: 0; background: var(--surface); color: var(--ink); font-size: 10px; }
-.inbox-tabs { display: flex; gap: 18px; padding: 22px 22px 11px; border-bottom: 1px solid var(--line); }
-.inbox-tabs button { padding: 0 0 9px; border: 0; background: transparent; color: var(--muted); font-size: 11px; }
-.inbox-tabs button span { margin-left: 4px; color: #aaa49a; }
 .inbox-tabs .tab-active { border-bottom: 2px solid var(--accent); color: var(--ink); font-weight: 700; }
 .email-list { max-height: 575px; overflow-y: auto; }
 .inbox-error { margin: 18px 16px; padding: 14px; border: 1px solid #edc4b8; border-radius: 6px; background: #fff1e8; color: #9c4e3c; font-size: 10px; line-height: 1.45; }.inbox-error strong { display: block; color: var(--ink); font-size: 11px; }.inbox-error p { margin: 5px 0 10px; }.inbox-error button { padding: 6px 9px; border: 1px solid #d9907d; border-radius: 4px; background: transparent; color: #9c4e3c; font-size: 10px; font-weight: 700; }

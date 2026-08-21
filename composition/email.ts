@@ -6,6 +6,7 @@ import { DeepSeekDraftGenerator } from "@/infrastructure/ai/deepseek/DeepSeekDra
 import { DeepSeekEmailContextGenerator } from "@/infrastructure/ai/deepseek/DeepSeekEmailContextGenerator";
 import { JsonEmailHistoryRepositoryAdapter } from "@/infrastructure/data-acces/json/JsonEmailHistoryRepositoryAdapter";
 import { GetEmailContext } from "@/application/email/history/GetEmailContext";
+import { ResetEmailHistory } from "@/application/email/history/ResetEmailHistory";
 
 const emailRepository = new JsonEmailRepositoryAdapter();
 const draftGenerator = new DeepSeekDraftGenerator();
@@ -25,5 +26,11 @@ export const generateDraftForEmail =
   );
 
 export const classifyEmails = new ClassifyEmails(emailClassifier, getEmailContext);
+
+export const resetEmailHistory = new ResetEmailHistory(
+  emailHistoryRepository,
+  getEmailContext,
+  classifyEmails,
+);
 
 export { emailRepository };

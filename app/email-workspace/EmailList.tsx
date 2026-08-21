@@ -4,7 +4,6 @@ import { formatDate, getInitials } from "./emailFormatters";
 
 type EmailListProps = {
   emails: ClassifiedEmail[];
-  totalCount: number;
   selectedId: number | null;
   query: string;
   categoryFilter: string;
@@ -16,11 +15,12 @@ type EmailListProps = {
   onCategoryChange: (category: string) => void;
   onSelectEmail: (email: ClassifiedEmail) => void;
   onRetry: () => void;
+  onResetHistory: () => void;
+  isResettingHistory: boolean;
 };
 
 export default function EmailList({
   emails,
-  totalCount,
   selectedId,
   query,
   categoryFilter,
@@ -32,6 +32,8 @@ export default function EmailList({
   onSelectEmail,
   onCategoryChange,
   onRetry,
+  onResetHistory,
+  isResettingHistory,
 }: EmailListProps) {
   return (
     <aside className="inbox-panel">
@@ -40,7 +42,19 @@ export default function EmailList({
           <span className="panel-kicker">Bandeja de entrada</span>
           <h2>Conversaciones</h2>
         </div>
-        <span className="count-badge">{emails.length}</span>
+        <button
+          type="button"
+          className="reset-history-button"
+          onClick={onResetHistory}
+          disabled={isResettingHistory}
+          aria-label="Borra la caché de categorización e historial de los correos"
+        >
+          {isResettingHistory ? "Borrando caché…" : "Borrar caché"}
+          <span className="reset-tooltip" role="tooltip">
+            Elimina la caché de categorización e historial para volver a
+            procesar los correos desde cero.
+          </span>
+        </button>
       </div>
       <label className="search-box">
         <span aria-hidden="true">/</span>
@@ -59,14 +73,6 @@ export default function EmailList({
           {categories.map((category) => <option key={category} value={category}>{category}</option>)}
         </select>
       </label>
-      <div className="inbox-tabs">
-        <button className="tab-active">
-          Todos <span>{totalCount}</span>
-        </button>
-        <button>
-          No leídos <span>8</span>
-        </button>
-      </div>
       <div className="email-list">
         {error && (
           <div className="inbox-error" role="alert">

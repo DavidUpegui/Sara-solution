@@ -9,4 +9,5 @@ export interface EmailHistoryRepository {
     emailId: number,
     classification: EmailClassification,
   ): Promise<void>;
+  clear(): Promise<void>;
 }

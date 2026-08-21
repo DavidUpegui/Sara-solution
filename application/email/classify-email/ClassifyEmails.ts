@@ -35,6 +35,10 @@ export class ClassifyEmails {
     private readonly maxConcurrentClassifications = 3,
   ) {}
 
+  clearCache(): void {
+    this.cachedClassifications.clear();
+  }
+
   private classifyWithCache(email: Email): Promise<EmailClassification> {
     const cachedClassification = this.cachedClassifications.get(email.id);
 

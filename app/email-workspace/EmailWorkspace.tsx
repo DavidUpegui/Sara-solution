@@ -26,6 +26,7 @@ export default function EmailWorkspace() {
   const [requiresApproval, setRequiresApproval] = useState(false);
   const [approvalReason, setApprovalReason] = useState("");
   const [draftStatus, setDraftStatus] = useState<DraftStatus>("idle");
+  const [isResettingHistory, setIsResettingHistory] = useState(false);
 
   const selectEmail = useCallback((email: ClassifiedEmail) => {
     setSelectedId(email.id);
@@ -112,6 +113,21 @@ export default function EmailWorkspace() {
     }
   }, []);
 
+  const resetHistory = useCallback(async () => {
+    if (!window.confirm("¿Borrar el historial y volver a categorizar los correos?")) return;
+
+    setIsResettingHistory(true);
+    try {
+      const response = await fetch("/api/emails/history", { method: "DELETE" });
+      if (!response.ok) throw new Error("History reset failed");
+      await loadEmails();
+    } catch {
+      setInboxError("No fue posible borrar el historial. Vuelva a intentarlo.");
+    } finally {
+      setIsResettingHistory(false);
+    }
+  }, [loadEmails]);
+
   useEffect(() => {
     const load = () => void loadEmails();
     const timer = window.setTimeout(load, 0);
@@ -175,7 +191,6 @@ export default function EmailWorkspace() {
       <section className="mail-workspace">
         <EmailList
           emails={displayedEmails}
-          totalCount={inboxProgress.total || emails.length}
           selectedId={selectedId}
           query={query}
           categoryFilter={categoryFilter}
@@ -187,6 +202,8 @@ export default function EmailWorkspace() {
           onCategoryChange={setCategoryFilter}
           onSelectEmail={selectEmail}
           onRetry={() => void loadEmails()}
+          onResetHistory={() => void resetHistory()}
+          isResettingHistory={isResettingHistory}
         />
         <EmailDetail email={selectedEmail} />
         <DraftWriter

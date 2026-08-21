@@ -42,6 +42,10 @@ export class GetEmailContext {
     return contextPromise;
   }
 
+  clearCache(): void {
+    this.cache.clear();
+  }
+
   async saveClassificationIfMissing(
     emailId: number,
     classification: EmailClassification,

@@ -9,18 +9,18 @@
       "temas": [
         "boletín",
         "materiales sostenibles",
-        "informe gratuito"
+        "informe"
       ],
       "categorizacion": {
         "category": "Sin proyecto identificado",
         "urgency": "Baja",
-        "reason": "Boletín informativo general sobre materiales sostenibles, sin relación con proyectos específicos.",
+        "reason": "Correo es un boletín informativo general sobre tendencias en materiales sostenibles, sin relación con ningún proyecto específico.",
         "categoryColor": "#817D76",
         "urgencyColor": "#6A9C80",
         "urgencyRank": 3
       }
     },
-    "context": "El correo actual es un boletín informativo sobre tendencias en materiales sostenibles, sin relación con el nodo candidato que trata sobre documentación para desembolso de crédito del proyecto Mirador del Este. No hay contexto histórico suficiente para vincularlos."
+    "context": "El correo actual es un boletín informativo sobre tendencias en materiales sostenibles, sin relación con el nodo candidato que trata sobre un crédito constructor para el proyecto Mirador del Este. No hay evidencia de relación."
   },
   {
     "emailId": 7,
@@ -34,20 +34,20 @@
       ],
       "temas": [
         "acabados de lujo",
-        "reunión",
         "portafolio",
+        "reunión",
         "precios especiales"
       ],
       "categorizacion": {
         "category": "Sin proyecto identificado",
         "urgency": "Baja",
-        "reason": "Correo comercial de proveedor de acabados sin referencia a un proyecto específico.",
+        "reason": "Correo comercial no solicitado de proveedor de acabados, sin relación con proyectos específicos.",
         "categoryColor": "#817D76",
         "urgencyColor": "#6A9C80",
         "urgencyRank": 3
       }
     },
-    "context": "El correo actual es una propuesta comercial de DecoLux Vitrinas para ofrecer acabados de lujo y agendar una reunión. No hay evidencia de relación con los nodos candidatos, que tratan sobre cotizaciones, pagos, informes de avance o problemas de obra en proyectos específicos. No hay contexto histórico suficiente para vincularlos."
+    "context": "El correo actual es una propuesta comercial de DecoLux Vitrinas para ofrecer acabados de lujo, sin relación con los nodos candidatos que tratan sobre desembolsos, cotizaciones, pagos o informes de proyectos específicos. No hay evidencia de conexión con ningún asunto previo."
   },
   {
     "emailId": 9,
@@ -62,6 +62,7 @@
       "proyectos": [],
       "temas": [
         "factura vencida",
+        "cobro",
         "bloqueo de cupo"
       ],
       "valores": [
@@ -73,644 +74,13 @@
       "categorizacion": {
         "category": "Sin proyecto identificado",
         "urgency": "Alta",
-        "reason": "Factura vencida con bloqueo de cupo de crédito, requiere atención inmediata.",
+        "reason": "Factura vencida con bloqueo de cupo y amenaza de reporte, requiere atención inmediata.",
         "categoryColor": "#817D76",
         "urgencyColor": "#C95743",
         "urgencyRank": 1
       }
     },
-    "context": "El correo actual es una notificación de cobro de Cementos del Valle por una factura vencida. No hay nodos candidatos que mencionen esta factura o un asunto de cobro similar, por lo que no hay relación histórica suficiente."
-  },
-  {
-    "emailId": 12,
-    "fechas": [
-      "2026-08-11"
-    ],
-    "relatedNodes": [],
-    "keyValues": {
-      "personas": [
-        "Sandra Torres"
-      ],
-      "proyectos": [
-        "Torre Aurora"
-      ],
-      "temas": [
-        "pago de cuota",
-        "aplazamiento",
-        "refinanciación",
-        "dificultad financiera"
-      ],
-      "valores": [
-        "19 millones"
-      ],
-      "ubicaciones": [
-        "apartamento 1102"
-      ],
-      "categorizacion": {
-        "category": "Torre Aurora",
-        "urgency": "Alta",
-        "reason": "Compradora del apto 1102 de Torre Aurora reporta imposibilidad de pagar la cuota de agosto por desempleo y solicita aplazamiento o refinanciación, lo que requiere atención inmediata.",
-        "categoryColor": "#2F6F7E",
-        "urgencyColor": "#C95743",
-        "urgencyRank": 1
-      }
-    },
-    "context": "El correo actual es de una compradora del apartamento 1102 de Torre Aurora que solicita aplazar o refinanciar su cuota de agosto por pérdida de empleo. No hay nodos candidatos que se refieran al mismo apartamento o a una solicitud similar, por lo que no hay contexto histórico suficiente."
-  },
-  {
-    "emailId": 13,
-    "fechas": [
-      "2026-08-11"
-    ],
-    "relatedNodes": [
-      5,
-      10
-    ],
-    "keyValues": {
-      "empresas": [
-        "Inversiones JH"
-      ],
-      "personas": [
-        "Javier Hernández",
-        "Sara"
-      ],
-      "proyectos": [
-        "Bosque 47",
-        "Torre Aurora"
-      ],
-      "temas": [
-        "informe de avance",
-        "retraso",
-        "llamada"
-      ],
-      "categorizacion": {
-        "category": "Torre Aurora",
-        "urgency": "Alta",
-        "reason": "Socio inversionista solicita informe y reporta posible retraso en Torre Aurora, pidiendo llamada de gerencia.",
-        "categoryColor": "#2F6F7E",
-        "urgencyColor": "#C95743",
-        "urgencyRank": 1
-      }
-    },
-    "context": "El correo actual de Javier Hernández solicita el informe de avance de julio (relacionado con el nodo 5) y pregunta por un retraso en Torre Aurora (relacionado con el nodo 10, que menciona retraso en entrega). Ambos nodos son relevantes para el seguimiento de los proyectos mencionados."
-  },
-  {
-    "emailId": 5,
-    "fechas": [
-      "2026-08-10"
-    ],
-    "relatedNodes": [
-      13
-    ],
-    "keyValues": {
-      "empresas": [
-        "Inversiones JH"
-      ],
-      "personas": [
-        "Javier Hernández",
-        "Sara"
-      ],
-      "proyectos": [
-        "Bosque 47"
-      ],
-      "temas": [
-        "informe de avance",
-        "recaudo",
-        "obra",
-        "entrega"
-      ],
-      "fechas": [
-        "julio",
-        "diciembre",
-        "miércoles"
-      ],
-      "categorizacion": {
-        "category": "Bosque 47",
-        "urgency": "Alta",
-        "reason": "Solicitud urgente de informe de avance con plazo para hoy, de un socio inversionista.",
-        "categoryColor": "#6A9C80",
-        "urgencyColor": "#C95743",
-        "urgencyRank": 1
-      }
-    },
-    "context": "El correo actual solicita un informe de avance de julio para el proyecto Bosque 47, incluyendo estado de recaudo, porcentaje de obra y proyección de entrega. No hay nodos candidatos que mencionen este proyecto o asunto, por lo que no hay relación histórica suficiente."
-  },
-  {
-    "emailId": 14,
-    "fechas": [
-      "2026-08-11",
-      "2026-08-31"
-    ],
-    "relatedNodes": [],
-    "keyValues": {
-      "empresas": [
-        "Constructora Aurora S.A.S."
-      ],
-      "temas": [
-        "renovación matrícula mercantil"
-      ],
-      "valores": [
-        "$1.840.000"
-      ],
-      "fechas_limite": [
-        "2026-08-31"
-      ],
-      "categorizacion": {
-        "category": "Sin proyecto identificado",
-        "urgency": "Alta",
-        "reason": "Vencimiento de trámite administrativo obligatorio el 31 de agosto de 2026, con multa potencial si no se renueva a tiempo.",
-        "categoryColor": "#817D76",
-        "urgencyColor": "#C95743",
-        "urgencyRank": 1
-      }
-    },
-    "context": "El correo actual es una notificación de la Cámara de Comercio de Medellín sobre la renovación de la matrícula mercantil de la empresa, con vencimiento el 31 de agosto de 2026. No hay nodos candidatos que se refieran a este trámite administrativo, por lo que no hay contexto histórico suficiente."
-  },
-  {
-    "emailId": 6,
-    "fechas": [
-      "2026-08-10"
-    ],
-    "relatedNodes": [
-      15
-    ],
-    "keyValues": {
-      "empresas": [
-        "Cementos del Valle"
-      ],
-      "personas": [
-        "Andrés Zapata",
-        "Sara"
-      ],
-      "proyectos": [
-        "Mirador"
-      ],
-      "temas": [
-        "fundida",
-        "factura vencida",
-        "urgencia"
-      ],
-      "ubicaciones": [
-        "obra"
-      ],
-      "categorizacion": {
-        "category": "Mirador del Este",
-        "urgency": "Alta",
-        "reason": "Paro de fundición por falta de concreto, requiere acción inmediata para evitar pérdidas.",
-        "categoryColor": "#75619B",
-        "urgencyColor": "#C95743",
-        "urgencyRank": 1
-      }
-    },
-    "context": "El correo actual reporta la suspensión de una fundida en el proyecto Mirador por falta de concreto debido a una factura vencida. No hay nodos candidatos que mencionen este proyecto o asunto, por lo que no hay relación histórica suficiente."
-  },
-  {
-    "emailId": 16,
-    "fechas": [
-      "2026-08-11",
-      "sábado"
-    ],
-    "relatedNodes": [],
-    "keyValues": {
-      "personas": [
-        "Camilo Arango"
-      ],
-      "proyectos": [
-        "Mirador del Este"
-      ],
-      "temas": [
-        "visita sala de ventas",
-        "cita previa",
-        "horario"
-      ],
-      "categorizacion": {
-        "category": "Mirador del Este",
-        "urgency": "Baja",
-        "reason": "Solicitud de información sobre horarios y cita para visita a sala de ventas, sin urgencia.",
-        "categoryColor": "#75619B",
-        "urgencyColor": "#6A9C80",
-        "urgencyRank": 3
-      }
-    },
-    "context": "El correo actual es una solicitud de visita a la sala de ventas del proyecto Mirador del Este. No hay nodos candidatos que se refieran a visitas, citas o ventas de este proyecto, por lo que no hay contexto histórico suficiente para relacionarlo."
-  },
-  {
-    "emailId": 17,
-    "fechas": [
-      "2026-08-12"
-    ],
-    "relatedNodes": [],
-    "keyValues": {
-      "temas": [
-        "bloqueo de cuenta",
-        "phishing",
-        "seguridad bancaria"
-      ],
-      "empresas": [
-        "Alertas Bancarias"
-      ],
-      "categorizacion": {
-        "category": "Sin proyecto identificado",
-        "urgency": "Alta",
-        "reason": "Correo de phishing que amenaza con bloquear la cuenta, requiere atención inmediata para evitar fraude.",
-        "categoryColor": "#817D76",
-        "urgencyColor": "#C95743",
-        "urgencyRank": 1
-      }
-    },
-    "context": "El correo actual es un intento de phishing que amenaza con bloquear una cuenta empresarial. No hay relación con los nodos candidatos, que tratan sobre pagos, cotizaciones, informes de avance o reclamaciones en proyectos específicos. No hay contexto histórico suficiente."
-  },
-  {
-    "emailId": 18,
-    "fechas": [
-      "2026-08-12",
-      "2026-08-08",
-      "2026-08-15"
-    ],
-    "relatedNodes": [],
-    "keyValues": {
-      "proyectos": [
-        "Mirador del Este"
-      ],
-      "temas": [
-        "acta de comité",
-        "compromisos",
-        "planos",
-        "ductos",
-        "ascensores"
-      ],
-      "documentos": [
-        "acta de comité de obra No. 14"
-      ],
-      "categorizacion": {
-        "category": "Mirador del Este",
-        "urgency": "Alta",
-        "reason": "El correo menciona compromisos con fechas límite próximas (15 de agosto) y requiere confirmación de recibido y responsables.",
-        "categoryColor": "#75619B",
-        "urgencyColor": "#C95743",
-        "urgencyRank": 1
-      }
-    },
-    "context": "El correo actual es un acta de comité de obra para el proyecto Mirador del Este, con compromisos específicos para Constructora Aurora. No hay nodos candidatos que se refieran al mismo comité, acta o compromisos, por lo que no hay contexto histórico suficiente para relacionarlos."
-  },
-  {
-    "emailId": 19,
-    "fechas": [
-      "2026-08-12"
-    ],
-    "relatedNodes": [
-      4
-    ],
-    "keyValues": {
-      "personas": [
-        "Patricia Londoño"
-      ],
-      "proyectos": [
-        "Torre Aurora"
-      ],
-      "temas": [
-        "pago de cuota",
-        "estado de cuenta",
-        "comprobante de pago"
-      ],
-      "ubicaciones": [
-        "apartamento 604"
-      ],
-      "categorizacion": {
-        "category": "Torre Aurora",
-        "urgency": "Media",
-        "reason": "La compradora reclama por falta de confirmación de su pago de cuota, pero no es una emergencia; requiere gestión administrativa.",
-        "categoryColor": "#2F6F7E",
-        "urgencyColor": "#C58A42",
-        "urgencyRank": 2
-      }
-    },
-    "context": "El correo actual es un seguimiento de Patricia Londoño sobre el pago de la cuota de agosto para el apartamento 604 de Torre Aurora. El nodo 4 es el correo original donde ella informó el pago y solicitó actualización de estado de cuenta. Hay evidencia suficiente de que se refieren al mismo asunto: el pago de la cuota de agosto y la falta de confirmación."
-  },
-  {
-    "emailId": 4,
-    "fechas": [
-      "2026-08-10"
-    ],
-    "relatedNodes": [
-      19
-    ],
-    "keyValues": {
-      "personas": [
-        "Patricia Londoño"
-      ],
-      "proyectos": [
-        "Torre Aurora"
-      ],
-      "temas": [
-        "pago de cuota",
-        "estado de cuenta"
-      ],
-      "valores": [
-        "$3.200.000"
-      ],
-      "ubicaciones": [
-        "apartamento 604"
-      ],
-      "categorizacion": {
-        "category": "Torre Aurora",
-        "urgency": "Media",
-        "reason": "La compradora informa un pago y solicita actualización de estado de cuenta; requiere gestión pero no es urgente.",
-        "categoryColor": "#2F6F7E",
-        "urgencyColor": "#C58A42",
-        "urgencyRank": 2
-      }
-    },
-    "context": "El correo actual es de una compradora del apartamento 604 de Torre Aurora informando el pago de la cuota de agosto. No hay evidencia de relación con los nodos candidatos, que tratan sobre documentación para desembolso de crédito constructor en otro proyecto y cotización de varilla para Torre Aurora. Son asuntos distintos."
-  },
-  {
-    "emailId": 20,
-    "fechas": [
-      "2026-08-20"
-    ],
-    "relatedNodes": [],
-    "keyValues": {
-      "empresas": [
-        "Constructora Aurora S.A.S."
-      ],
-      "temas": [
-        "vacaciones",
-        "programación",
-        "turnos"
-      ],
-      "departamentos": [
-        "administrativo",
-        "sala de ventas"
-      ],
-      "categorizacion": {
-        "category": "Sin proyecto identificado",
-        "urgency": "Baja",
-        "reason": "Correo interno de RRHH sobre vacaciones, sin relación con proyectos específicos.",
-        "categoryColor": "#817D76",
-        "urgencyColor": "#6A9C80",
-        "urgencyRank": 3
-      }
-    },
-    "context": "El correo actual es una solicitud interna de recursos humanos para que el equipo administrativo envíe su programación de vacaciones del último trimestre antes del 20 de agosto, con el fin de coordinar turnos en la sala de ventas. No hay nodos candidatos que se refieran a este asunto de gestión de personal o vacaciones, por lo que no hay contexto histórico suficiente."
-  },
-  {
-    "emailId": 21,
-    "fechas": [
-      "2026-08-12"
-    ],
-    "relatedNodes": [
-      1,
-      15
-    ],
-    "keyValues": {
-      "empresas": [
-        "Aceros Central"
-      ],
-      "personas": [
-        "Sara",
-        "Carlos"
-      ],
-      "proyectos": [
-        "Torre Aurora"
-      ],
-      "temas": [
-        "cotización",
-        "ajuste de precio",
-        "varilla"
-      ],
-      "valores": [
-        "$5.120 por kilo"
-      ],
-      "categorizacion": {
-        "category": "Torre Aurora",
-        "urgency": "Alta",
-        "reason": "Ajuste de precio de varilla para Torre Aurora con plazo límite hoy a las 5 pm para mantener precio anterior.",
-        "categoryColor": "#2F6F7E",
-        "urgencyColor": "#C95743",
-        "urgencyRank": 1
-      }
-    },
-    "context": "El correo actual informa un ajuste de precio en la cotización de varilla para Torre Aurora, con un nuevo precio de $5.120 por kilo. Se relaciona con el nodo 1 (cotización original de varilla figurada para Torre Aurora) y el nodo 15 (que menciona un anticipo a Aceros Central para Torre Aurora), ambos del mismo proveedor y proyecto."
-  },
-  {
-    "emailId": 1,
-    "fechas": [
-      "2026-08-10"
-    ],
-    "relatedNodes": [
-      15,
-      21
-    ],
-    "keyValues": {
-      "empresas": [
-        "Aceros Central"
-      ],
-      "personas": [
-        "Carlos Mejía",
-        "Sara"
-      ],
-      "proyectos": [
-        "Torre Aurora"
-      ],
-      "temas": [
-        "cotización",
-        "varilla figurada"
-      ],
-      "valores": [
-        "14.200 kg",
-        "$4.850 por kilo",
-        "$68.870.000 antes de IVA"
-      ],
-      "categorizacion": {
-        "category": "Torre Aurora",
-        "urgency": "Media",
-        "reason": "Cotización de varilla figurada para Torre Aurora con validez de 15 días, requiere atención para confirmar orden de compra.",
-        "categoryColor": "#2F6F7E",
-        "urgencyColor": "#C58A42",
-        "urgencyRank": 2
-      }
-    },
-    "context": "No hay nodos de historial previos para relacionar. El correo es una cotización de varilla figurada para el piso 8 de Torre Aurora, enviada por Carlos Mejía de Aceros Central a Sara."
-  },
-  {
-    "emailId": 15,
-    "fechas": [
-      "2026-08-11",
-      "viernes"
-    ],
-    "relatedNodes": [
-      1,
-      6,
-      21
-    ],
-    "keyValues": {
-      "empresas": [
-        "Aceros Central"
-      ],
-      "personas": [
-        "Diana Restrepo",
-        "Sara"
-      ],
-      "proyectos": [
-        "Torre Aurora",
-        "Mirador"
-      ],
-      "temas": [
-        "soportes",
-        "pagos",
-        "cierre contable",
-        "anticipo",
-        "interventoría",
-        "caja menor"
-      ],
-      "valores": [
-        "$20.000.000",
-        "$6.500.000",
-        "$1.230.000"
-      ],
-      "categorizacion": {
-        "category": "Mirador del Este",
-        "urgency": "Alta",
-        "reason": "Solicitud urgente de soportes para cierre contable de julio, incluye pago de interventoría de Mirador y anticipo a Aceros Central para Torre Aurora, con plazo límite el viernes.",
-        "categoryColor": "#75619B",
-        "urgencyColor": "#C95743",
-        "urgencyRank": 1
-      }
-    },
-    "context": "El correo actual de contabilidad solicita soportes para tres pagos: anticipo a Aceros Central (relacionado con el nodo 1, cotización de varilla para Torre Aurora), pago de interventoría de Mirador (relacionado con el nodo 6, que menciona problemas de concreto en Mirador, aunque no directamente interventoría), y una salida de caja menor sin factura. Los nodos 1 y 6 son relevantes porque involucran a los mismos proveedores/proyectos y asuntos de pagos o gestión."
-  },
-  {
-    "emailId": 22,
-    "fechas": [
-      "2026-08-12",
-      "2026-06-30"
-    ],
-    "relatedNodes": [
-      10
-    ],
-    "keyValues": {
-      "personas": [
-        "Óscar Ramírez"
-      ],
-      "proyectos": [
-        "Torre Aurora"
-      ],
-      "temas": [
-        "reclamación",
-        "retraso en entrega",
-        "acción legal"
-      ],
-      "ubicaciones": [
-        "apartamento 302"
-      ],
-      "categorizacion": {
-        "category": "Torre Aurora",
-        "urgency": "Alta",
-        "reason": "Reclamación por retraso en entrega con acción legal y amenaza de queja pública.",
-        "categoryColor": "#2F6F7E",
-        "urgencyColor": "#C95743",
-        "urgencyRank": 1
-      }
-    },
-    "context": "El correo actual es una reclamación de Óscar Ramírez por el retraso en la entrega del apartamento 302 de Torre Aurora, con fecha prometida del 30 de junio. El nodo 10 es una reclamación legal previa del mismo comprador sobre el mismo apartamento y el mismo retraso, con plazo de respuesta de 5 días hábiles. Hay evidencia suficiente de que se refieren al mismo asunto."
-  },
-  {
-    "emailId": 10,
-    "fechas": [
-      "2026-08-11",
-      "2026-06-30"
-    ],
-    "relatedNodes": [
-      13,
-      22
-    ],
-    "keyValues": {
-      "personas": [
-        "Rodrigo Gómez",
-        "Óscar Ramírez"
-      ],
-      "proyectos": [
-        "Torre Aurora"
-      ],
-      "temas": [
-        "reclamación",
-        "retraso en entrega"
-      ],
-      "ubicaciones": [
-        "apartamento 302"
-      ],
-      "categorizacion": {
-        "category": "Torre Aurora",
-        "urgency": "Alta",
-        "reason": "Reclamación legal por retraso en entrega con plazo de respuesta de 5 días hábiles.",
-        "categoryColor": "#2F6F7E",
-        "urgencyColor": "#C95743",
-        "urgencyRank": 1
-      }
-    },
-    "context": "El correo actual es una reclamación legal por retraso en la entrega del apartamento 302 de Torre Aurora. Los nodos candidatos tratan sobre otros asuntos (pago de cuota, cotización de varilla, documentación de crédito, informe de avance) y no hay evidencia de relación con esta reclamación específica."
-  },
-  {
-    "emailId": 23,
-    "fechas": [
-      "2026-08-12"
-    ],
-    "relatedNodes": [
-      8,
-      11
-    ],
-    "keyValues": {
-      "proyectos": [
-        "Bosque 47"
-      ],
-      "temas": [
-        "leads",
-        "ventas",
-        "visitas",
-        "separaciones"
-      ],
-      "categorizacion": {
-        "category": "Bosque 47",
-        "urgency": "Baja",
-        "reason": "Reporte semanal de leads con mención del proyecto Bosque 47 como el más consultado, sin urgencia.",
-        "categoryColor": "#6A9C80",
-        "urgencyColor": "#6A9C80",
-        "urgencyRank": 3
-      }
-    },
-    "context": "El correo actual es un reporte semanal de leads que menciona que el proyecto más consultado es Bosque 47. Los nodos 8 y 11 están relacionados con Bosque 47: el nodo 8 es una solicitud de información sobre precios y disponibilidad, y el nodo 11 es una confirmación de pedido de pintura para el proyecto. Aunque no hay una conexión directa con los leads, comparten el mismo proyecto, lo que sugiere que son parte del mismo seguimiento comercial del proyecto Bosque 47."
-  },
-  {
-    "emailId": 8,
-    "fechas": [
-      "2026-08-10"
-    ],
-    "relatedNodes": [
-      23
-    ],
-    "keyValues": {
-      "proyectos": [
-        "Bosque 47"
-      ],
-      "temas": [
-        "información",
-        "precios",
-        "disponibilidad",
-        "subsidio"
-      ],
-      "valores": [
-        "280-330 millones"
-      ],
-      "categorizacion": {
-        "category": "Bosque 47",
-        "urgency": "Media",
-        "reason": "Solicitud de información sobre precios, alcobas y subsidio del proyecto Bosque 47, sin urgencia inmediata.",
-        "categoryColor": "#6A9C80",
-        "urgencyColor": "#C58A42",
-        "urgencyRank": 2
-      }
-    },
-    "context": "El correo actual es una solicitud de información sobre el proyecto Bosque 47, específicamente precios, número de alcobas, disponibilidad y subsidios. No hay nodos candidatos que se refieran al mismo proyecto o asunto, por lo que no hay relación histórica suficiente."
+    "context": "El correo actual es un cobro de factura vencida de Cementos del Valle, sin referencia a un proyecto específico. Los nodos candidatos no mencionan esta factura ni el tema de cobro de Cementos del Valle, por lo que no hay evidencia de relación con ningún asunto previo."
   },
   {
     "emailId": 11,
@@ -719,7 +89,8 @@
       "2026-08-15"
     ],
     "relatedNodes": [
-      23
+      5,
+      8
     ],
     "keyValues": {
       "empresas": [
@@ -743,20 +114,672 @@
       "documentos": [
         "orden de compra"
       ],
+      "compromisos": [
+        "entrega el viernes 15"
+      ],
       "categorizacion": {
         "category": "Bosque 47",
         "urgency": "Media",
-        "reason": "Confirmación de pedido de pintura para Bosque 47, requiere orden de compra firmada para despacho, pero no es una emergencia.",
+        "reason": "Confirmación de pedido de pintura para el proyecto Bosque 47, requiere orden de compra firmada para despacho, sin urgencia inmediata.",
         "categoryColor": "#6A9C80",
         "urgencyColor": "#C58A42",
         "urgencyRank": 2
       }
     },
-    "context": "El correo actual es una confirmación de pedido de pintura para el proyecto Bosque 47, con entrega el 15 de agosto y solicitud de orden de compra firmada. No hay nodos candidatos que se refieran a este pedido o a la compra de pintura, por lo que no hay relación histórica suficiente."
+    "context": "El correo actual es una confirmación de pedido de pintura para el proyecto Bosque 47, con entrega el 15 de agosto. Los nodos 5 y 8 se refieren al mismo proyecto Bosque 47, indicando que es un proyecto en curso con actividades de avance y consultas comerciales. Aunque el asunto específico difiere (pedido de materiales vs. informe de avance o información de ventas), todos se relacionan con el mismo proyecto, por lo que se establece una relación."
+  },
+  {
+    "emailId": 5,
+    "fechas": [
+      "2026-08-10"
+    ],
+    "relatedNodes": [
+      8,
+      11
+    ],
+    "keyValues": {
+      "empresas": [
+        "Inversiones JH"
+      ],
+      "personas": [
+        "Javier Hernández",
+        "Sara"
+      ],
+      "proyectos": [
+        "Bosque 47"
+      ],
+      "temas": [
+        "informe de avance",
+        "recaudo",
+        "avance de obra",
+        "entrega"
+      ],
+      "compromisos": [
+        "envío del informe hoy",
+        "comité familiar el miércoles"
+      ],
+      "categorizacion": {
+        "category": "Bosque 47",
+        "urgency": "Alta",
+        "reason": "Solicitud urgente de informe de avance con fecha límite hoy para comité familiar el miércoles.",
+        "categoryColor": "#6A9C80",
+        "urgencyColor": "#C95743",
+        "urgencyRank": 1
+      }
+    },
+    "context": "El correo actual solicita el informe de avance de julio del proyecto Bosque 47, incluyendo estado del recaudo, porcentaje de obra y proyección de entrega. No hay nodos candidatos que mencionen el proyecto Bosque 47 ni el tema del informe de avance, por lo que no se establecen relaciones."
+  },
+  {
+    "emailId": 12,
+    "fechas": [
+      "2026-08-11"
+    ],
+    "relatedNodes": [],
+    "keyValues": {
+      "personas": [
+        "Sandra Torres"
+      ],
+      "proyectos": [
+        "Torre Aurora"
+      ],
+      "temas": [
+        "dificultad de pago",
+        "aplazamiento",
+        "refinanciación"
+      ],
+      "valores": [
+        "19 millones"
+      ],
+      "apartamento": "1102",
+      "categorizacion": {
+        "category": "Torre Aurora",
+        "urgency": "Alta",
+        "reason": "Compradora del apto 1102 en Torre Aurora reporta imposibilidad de pagar la cuota de agosto por desempleo y solicita aplazamiento o refinanciación, lo que requiere atención inmediata.",
+        "categoryColor": "#2F6F7E",
+        "urgencyColor": "#C95743",
+        "urgencyRank": 1
+      }
+    },
+    "context": "El correo actual es de una compradora del apartamento 1102 en Torre Aurora, solicitando aplazamiento o refinanciación de la cuota de agosto por pérdida de empleo. No hay nodos candidatos que se refieran al mismo asunto (dificultad de pago o solicitud de refinanciación). Aunque el nodo 4 menciona Torre Aurora y pagos de cuota, se refiere a un apartamento diferente (604) y a un pago exitoso, no a una dificultad. Por lo tanto, no se establecen nodos relacionados."
+  },
+  {
+    "emailId": 13,
+    "fechas": [
+      "2026-08-11"
+    ],
+    "relatedNodes": [
+      1,
+      10
+    ],
+    "keyValues": {
+      "empresas": [
+        "Inversiones JH"
+      ],
+      "personas": [
+        "Javier Hernández",
+        "Sara"
+      ],
+      "proyectos": [
+        "Torre Aurora"
+      ],
+      "temas": [
+        "retraso",
+        "informe de avance",
+        "inversión"
+      ],
+      "categorizacion": {
+        "category": "Torre Aurora",
+        "urgency": "Alta",
+        "reason": "Inversionista solicita informe y expresa preocupación por posible retraso en Torre Aurora, pidiendo llamada de gerencia.",
+        "categoryColor": "#2F6F7E",
+        "urgencyColor": "#C95743",
+        "urgencyRank": 1
+      }
+    },
+    "context": "El correo actual de Javier Hernández (inversionista) pregunta sobre un posible retraso en el proyecto Torre Aurora y solicita un informe de avance. Los nodos 1 y 10 se refieren a Torre Aurora: el nodo 1 es una cotización de materiales y el nodo 10 es una reclamación por retraso en la entrega de un apartamento. Aunque el nodo 1 no trata directamente sobre retrasos, el nodo 10 sí menciona un retraso en la entrega, lo que respalda la preocupación de Javier. Además, el correo actual menciona que Javier tiene inversión en dos proyectos, y el nodo 5 (Bosque 47) también es relevante, pero no hay evidencia de retraso en ese proyecto. Por lo tanto, se relaciona con los nodos 1 y 10 por el proyecto común y el tema de retraso."
+  },
+  {
+    "emailId": 14,
+    "fechas": [
+      "2026-08-11",
+      "2026-08-31"
+    ],
+    "relatedNodes": [],
+    "keyValues": {
+      "empresas": [
+        "Constructora Aurora S.A.S."
+      ],
+      "temas": [
+        "renovación matrícula mercantil",
+        "trámite legal"
+      ],
+      "valores": [
+        "$1.840.000"
+      ],
+      "documentos": [
+        "matrícula mercantil"
+      ],
+      "categorizacion": {
+        "category": "Sin proyecto identificado",
+        "urgency": "Alta",
+        "reason": "Recordatorio de renovación de matrícula mercantil con vencimiento próximo (31 de agosto de 2026) y costo asociado.",
+        "categoryColor": "#817D76",
+        "urgencyColor": "#C95743",
+        "urgencyRank": 1
+      }
+    },
+    "context": "El correo actual es un recordatorio de la Cámara de Comercio para renovar la matrícula mercantil de la empresa, con vencimiento el 31 de agosto de 2026. No hay evidencia en los nodos candidatos de que se haya tratado este asunto previamente, por lo que no se establecen nodos relacionados."
+  },
+  {
+    "emailId": 15,
+    "fechas": [
+      "2026-08-11",
+      "2026-08-14"
+    ],
+    "relatedNodes": [
+      1,
+      6
+    ],
+    "keyValues": {
+      "empresas": [
+        "Aceros Central",
+        "Cementos del Valle"
+      ],
+      "personas": [
+        "Diana Restrepo",
+        "Sara"
+      ],
+      "proyectos": [
+        "Torre Aurora",
+        "Mirador"
+      ],
+      "temas": [
+        "soportes de pago",
+        "anticipo",
+        "pago de interventoría",
+        "caja menor",
+        "informe contable"
+      ],
+      "valores": [
+        "$20.000.000",
+        "$6.500.000",
+        "$1.230.000"
+      ],
+      "documentos": [
+        "soportes de pago",
+        "factura"
+      ],
+      "compromisos": [
+        "entrega de soportes antes del viernes"
+      ],
+      "categorizacion": {
+        "category": "Mirador del Este",
+        "urgency": "Alta",
+        "reason": "Solicitud urgente de soportes de pago para cerrar julio, incluyendo pago de interventoría de Mirador; requiere atención antes del viernes para entregar informe a gerencia.",
+        "categoryColor": "#75619B",
+        "urgencyColor": "#C95743",
+        "urgencyRank": 1
+      }
+    },
+    "context": "El correo actual solicita soportes de pago para cerrar julio, incluyendo el anticipo a Aceros Central y el pago de interventoría de Mirador. El nodo 1 se relaciona con Aceros Central y el proyecto Torre Aurora, y el nodo 6 se relaciona con el proyecto Mirador y una factura vencida con Cementos del Valle. Ambos nodos están vinculados a los mismos proveedores y proyectos mencionados en el correo actual, lo que sugiere que son parte del mismo seguimiento contable."
+  },
+  {
+    "emailId": 6,
+    "fechas": [
+      "2026-08-10"
+    ],
+    "relatedNodes": [
+      15
+    ],
+    "keyValues": {
+      "empresas": [
+        "Cementos del Valle"
+      ],
+      "personas": [
+        "Andrés Zapata",
+        "Sara"
+      ],
+      "proyectos": [
+        "Mirador"
+      ],
+      "temas": [
+        "fundida",
+        "factura vencida",
+        "suministro de concreto"
+      ],
+      "compromisos": [
+        "revisar factura vencida"
+      ],
+      "categorizacion": {
+        "category": "Mirador del Este",
+        "urgency": "Alta",
+        "reason": "Paro de fundición por falta de concreto, requiere atención inmediata para evitar pérdidas y horas extras.",
+        "categoryColor": "#75619B",
+        "urgencyColor": "#C95743",
+        "urgencyRank": 1
+      }
+    },
+    "context": "El correo actual reporta la suspensión de la fundida en el proyecto Mirador por falta de suministro de concreto debido a una factura vencida. No hay nodos candidatos que mencionen el proyecto Mirador ni el tema de suministro de concreto o facturación, por lo que no se establecen relaciones."
+  },
+  {
+    "emailId": 16,
+    "fechas": [
+      "2026-08-11"
+    ],
+    "relatedNodes": [
+      2,
+      8
+    ],
+    "keyValues": {
+      "proyectos": [
+        "Mirador del Este"
+      ],
+      "temas": [
+        "visita",
+        "sala de ventas"
+      ],
+      "personas": [
+        "Camilo Arango"
+      ],
+      "categorizacion": {
+        "category": "Mirador del Este",
+        "urgency": "Baja",
+        "reason": "Solicitud de información sobre horarios y cita para visita a sala de ventas, sin urgencia inmediata.",
+        "categoryColor": "#75619B",
+        "urgencyColor": "#6A9C80",
+        "urgencyRank": 3
+      }
+    },
+    "context": "El correo actual es de un interesado en visitar la sala de ventas del proyecto Mirador del Este. El nodo 2 se refiere al mismo proyecto (Mirador del Este) y trata sobre un crédito constructor, lo que indica que es un proyecto en curso. El nodo 8 también se refiere al proyecto Mirador del Este, específicamente sobre una factura vencida y suministro de concreto, lo que confirma que es un proyecto activo. Aunque el asunto específico (visita vs. crédito o suministro) es diferente, todos se relacionan con el mismo proyecto, por lo que se establece una relación."
+  },
+  {
+    "emailId": 8,
+    "fechas": [
+      "2026-08-10"
+    ],
+    "relatedNodes": [
+      5,
+      11,
+      16
+    ],
+    "keyValues": {
+      "proyectos": [
+        "Bosque 47"
+      ],
+      "temas": [
+        "información de apartamentos",
+        "precios",
+        "disponibilidad",
+        "subsidio"
+      ],
+      "valores": [
+        "280-330 millones"
+      ],
+      "categorizacion": {
+        "category": "Bosque 47",
+        "urgency": "Media",
+        "reason": "Solicitud de información comercial sobre el proyecto Bosque 47, sin urgencia inmediata.",
+        "categoryColor": "#6A9C80",
+        "urgencyColor": "#C58A42",
+        "urgencyRank": 2
+      }
+    },
+    "context": "El correo actual es de una interesada en el proyecto Bosque 47, solicitando información sobre precios, alcobas y subsidio. El nodo 5 se refiere al mismo proyecto Bosque 47, tratando sobre un informe de avance y recaudo, lo que indica que es un proyecto en curso. Aunque el asunto específico difiere (información de ventas vs. informe de avance), ambos se relacionan con el mismo proyecto, por lo que se establece una relación."
+  },
+  {
+    "emailId": 17,
+    "fechas": [
+      "2026-08-12"
+    ],
+    "relatedNodes": [],
+    "keyValues": {
+      "temas": [
+        "phishing",
+        "seguridad bancaria",
+        "bloqueo de cuenta"
+      ],
+      "empresas": [
+        "Alertas Bancarias"
+      ],
+      "categorizacion": {
+        "category": "Sin proyecto identificado",
+        "urgency": "Alta",
+        "reason": "Correo de phishing que solicita datos bancarios con amenaza de bloqueo de cuenta, requiere atención inmediata para evitar fraude.",
+        "categoryColor": "#817D76",
+        "urgencyColor": "#C95743",
+        "urgencyRank": 1
+      }
+    },
+    "context": "El correo actual es un intento de phishing que solicita validar datos bancarios para evitar un bloqueo de cuenta. No se relaciona con ningún nodo del historial, ya que los nodos tratan sobre pagos, proyectos, facturas y otros asuntos legítimos de la constructora. No hay evidencia de conexión con ningún asunto previo."
+  },
+  {
+    "emailId": 18,
+    "fechas": [
+      "2026-08-08",
+      "2026-08-12",
+      "2026-08-15"
+    ],
+    "relatedNodes": [],
+    "keyValues": {
+      "proyectos": [
+        "Mirador del Este"
+      ],
+      "temas": [
+        "comité de obra",
+        "acta",
+        "compromisos"
+      ],
+      "documentos": [
+        "acta de comité de obra No. 14"
+      ],
+      "compromisos": [
+        "entregar plano de fachada",
+        "corregir ductos piso 5",
+        "confirmar proveedor de ascensores"
+      ],
+      "categorizacion": {
+        "category": "Mirador del Este",
+        "urgency": "Alta",
+        "reason": "El correo menciona compromisos con fechas límite próximas (15 de agosto) para el proyecto Mirador del Este.",
+        "categoryColor": "#75619B",
+        "urgencyColor": "#C95743",
+        "urgencyRank": 1
+      }
+    },
+    "context": "El correo actual es un acta de comité de obra para el proyecto Mirador del Este, con compromisos específicos para Aurora. No hay nodos candidatos que se refieran al mismo comité o a los mismos compromisos, por lo que no se establecen relaciones."
+  },
+  {
+    "emailId": 19,
+    "fechas": [
+      "2026-08-12"
+    ],
+    "relatedNodes": [
+      4
+    ],
+    "keyValues": {
+      "proyectos": [
+        "Torre Aurora"
+      ],
+      "personas": [
+        "Patricia Londoño"
+      ],
+      "temas": [
+        "pago de cuota",
+        "reclamo por cobro"
+      ],
+      "apartamento": "604",
+      "documentos": [
+        "comprobante de consignación"
+      ],
+      "categorizacion": {
+        "category": "Torre Aurora",
+        "urgency": "Alta",
+        "reason": "La compradora reclama que no se ha confirmado su pago y sigue recibiendo avisos de cobro, a pesar de haber enviado el comprobante. Es la tercera vez que ocurre, lo que requiere atención inmediata para resolver el problema.",
+        "categoryColor": "#2F6F7E",
+        "urgencyColor": "#C95743",
+        "urgencyRank": 1
+      }
+    },
+    "context": "El correo actual es un reclamo de Patricia Londoño, compradora del apto 604 en Torre Aurora, quien afirma haber pagado la cuota de agosto y enviado el comprobante, pero sigue recibiendo avisos de cobro. El nodo 4 es el correo original de Patricia informando el pago de la cuota de agosto, por lo que se relaciona directamente con este seguimiento."
+  },
+  {
+    "emailId": 4,
+    "fechas": [
+      "2026-08-10"
+    ],
+    "relatedNodes": [
+      19
+    ],
+    "keyValues": {
+      "proyectos": [
+        "Torre Aurora"
+      ],
+      "personas": [
+        "Patricia Londoño"
+      ],
+      "temas": [
+        "pago de cuota",
+        "estado de cuenta"
+      ],
+      "valores": [
+        "$3.200.000"
+      ],
+      "documentos": [
+        "comprobante de consignación"
+      ],
+      "categorizacion": {
+        "category": "Torre Aurora",
+        "urgency": "Media",
+        "reason": "La compradora informa un pago y solicita actualización de estado de cuenta; requiere seguimiento pero no es urgente.",
+        "categoryColor": "#2F6F7E",
+        "urgencyColor": "#C58A42",
+        "urgencyRank": 2
+      }
+    },
+    "context": "El correo actual es de una compradora del apartamento 604 en Torre Aurora, informando el pago de la cuota de agosto. No hay nodos candidatos que se refieran al mismo asunto (pagos de cuotas de apartamentos), por lo que no se establecen relaciones."
+  },
+  {
+    "emailId": 20,
+    "fechas": [
+      "2026-08-12",
+      "2026-08-20"
+    ],
+    "relatedNodes": [],
+    "keyValues": {
+      "temas": [
+        "vacaciones",
+        "programación",
+        "turnos"
+      ],
+      "areas": [
+        "talento humano",
+        "sala de ventas"
+      ],
+      "categorizacion": {
+        "category": "Sin proyecto identificado",
+        "urgency": "Baja",
+        "reason": "Correo interno de talento humano sobre programación de vacaciones, sin relación con proyectos específicos.",
+        "categoryColor": "#817D76",
+        "urgencyColor": "#6A9C80",
+        "urgencyRank": 3
+      }
+    },
+    "context": "El correo actual es una solicitud interna de talento humano para que el equipo administrativo envíe su programación de vacaciones del último trimestre antes del 20 de agosto, con el fin de cuadrar turnos en la sala de ventas. No hay nodos candidatos que se refieran a este asunto de vacaciones o programación de personal, por lo que no se establecen relaciones."
+  },
+  {
+    "emailId": 21,
+    "fechas": [
+      "2026-08-12"
+    ],
+    "relatedNodes": [
+      1
+    ],
+    "keyValues": {
+      "empresas": [
+        "Aceros Central"
+      ],
+      "personas": [
+        "Carlos",
+        "Sara"
+      ],
+      "proyectos": [
+        "Torre Aurora"
+      ],
+      "temas": [
+        "ajuste de precio",
+        "cotización",
+        "varilla"
+      ],
+      "valores": [
+        "$5.120 por kilo"
+      ],
+      "categorizacion": {
+        "category": "Torre Aurora",
+        "urgency": "Alta",
+        "reason": "Ajuste de precio de varilla para Torre Aurora con vencimiento hoy a las 5 pm; requiere confirmación inmediata para mantener precio anterior.",
+        "categoryColor": "#2F6F7E",
+        "urgencyColor": "#C95743",
+        "urgencyRank": 1
+      }
+    },
+    "context": "El correo actual informa un ajuste de precio en la cotización de varilla para el proyecto Torre Aurora, relacionado con la cotización original del nodo 1 (mismo proveedor, mismo material y mismo proyecto)."
+  },
+  {
+    "emailId": 1,
+    "fechas": [
+      "2026-08-10"
+    ],
+    "relatedNodes": [
+      13,
+      15,
+      21
+    ],
+    "keyValues": {
+      "empresas": [
+        "Aceros Central"
+      ],
+      "personas": [
+        "Carlos Mejía",
+        "Sara"
+      ],
+      "proyectos": [
+        "Torre Aurora"
+      ],
+      "temas": [
+        "cotización",
+        "varilla figurada"
+      ],
+      "valores": [
+        "14.200 kg",
+        "$4.850 por kilo",
+        "$68.870.000 antes de IVA"
+      ],
+      "documentos": [
+        "cotización de varilla figurada"
+      ],
+      "compromisos": [
+        "validez de 15 días",
+        "tiempo de entrega 12 días hábiles"
+      ],
+      "categorizacion": {
+        "category": "Torre Aurora",
+        "urgency": "Media",
+        "reason": "Cotización de varilla figurada para Torre Aurora con validez de 15 días y entrega en 12 días hábiles; requiere seguimiento pero no es urgente.",
+        "categoryColor": "#2F6F7E",
+        "urgencyColor": "#C58A42",
+        "urgencyRank": 2
+      }
+    },
+    "context": "No hay nodos de historial disponibles para relacionar. El correo es una cotización de varilla figurada para el proyecto Torre Aurora, pero no hay contexto histórico suficiente."
+  },
+  {
+    "emailId": 22,
+    "fechas": [
+      "2026-06-30",
+      "2026-08-12"
+    ],
+    "relatedNodes": [
+      10
+    ],
+    "keyValues": {
+      "personas": [
+        "Óscar Ramírez"
+      ],
+      "proyectos": [
+        "Torre Aurora"
+      ],
+      "apartamento": "302",
+      "temas": [
+        "retraso en entrega",
+        "reclamación",
+        "abogado"
+      ],
+      "categorizacion": {
+        "category": "Torre Aurora",
+        "urgency": "Alta",
+        "reason": "Reclamación legal con amenaza de queja en redes sociales por retraso en entrega de apartamento.",
+        "categoryColor": "#2F6F7E",
+        "urgencyColor": "#C95743",
+        "urgencyRank": 1
+      }
+    },
+    "context": "El correo actual es de Óscar Ramírez, comprador del apartamento 302 en Torre Aurora, quien reclama por el retraso en la entrega (prometida para el 30 de junio) y menciona que ha contactado a su abogado. El nodo 10 es una reclamación formal previa del mismo comprador sobre el mismo retraso en la entrega del mismo apartamento, por lo que se refiere al mismo asunto y seguimiento."
+  },
+  {
+    "emailId": 10,
+    "fechas": [
+      "2026-06-30",
+      "2026-08-11"
+    ],
+    "relatedNodes": [
+      13,
+      22
+    ],
+    "keyValues": {
+      "proyectos": [
+        "Torre Aurora"
+      ],
+      "personas": [
+        "Óscar Ramírez",
+        "Rodrigo Gómez"
+      ],
+      "temas": [
+        "reclamación",
+        "retraso en entrega",
+        "apartamento 302"
+      ],
+      "documentos": [
+        "reclamación formal"
+      ],
+      "categorizacion": {
+        "category": "Torre Aurora",
+        "urgency": "Alta",
+        "reason": "Reclamación legal con plazo de respuesta de 5 días hábiles por retraso en entrega de apartamento.",
+        "categoryColor": "#2F6F7E",
+        "urgencyColor": "#C95743",
+        "urgencyRank": 1
+      }
+    },
+    "context": "El correo actual es una reclamación legal por retraso en la entrega del apartamento 302 en Torre Aurora. No hay nodos candidatos que se refieran al mismo asunto (reclamación por retraso en entrega de apartamento específico). Aunque algunos nodos mencionan Torre Aurora, tratan sobre cotización de varilla o pago de cuota, asuntos distintos. Por lo tanto, no se establecen nodos relacionados."
+  },
+  {
+    "emailId": 23,
+    "fechas": [
+      "2026-08-12"
+    ],
+    "relatedNodes": [],
+    "keyValues": {
+      "proyectos": [
+        "Bosque 47"
+      ],
+      "temas": [
+        "reporte de leads",
+        "ventas",
+        "marketing"
+      ],
+      "valores": [
+        "34 interesados",
+        "19 Instagram",
+        "9 valla de la 80",
+        "6 referidos",
+        "7 visitas agendadas",
+        "2 separaciones"
+      ],
+      "categorizacion": {
+        "category": "Bosque 47",
+        "urgency": "Baja",
+        "reason": "Reporte semanal de leads de ventas, menciona el proyecto Bosque 47 como el más consultado, pero no requiere acción inmediata.",
+        "categoryColor": "#6A9C80",
+        "urgencyColor": "#6A9C80",
+        "urgencyRank": 3
+      }
+    },
+    "context": "El correo actual es un reporte semanal de leads de ventas, mencionando el proyecto Bosque 47 como el más consultado. Aunque comparte el proyecto con los nodos 5, 8 y 11, el asunto es distinto (reporte de marketing vs. pedido de materiales, información comercial o informe de avance). No hay evidencia de que se refiera al mismo asunto o conversación, por lo que no se establecen relaciones."
   },
   {
     "emailId": 24,
     "fechas": [
+      "2026-08-13",
       "2026-08-18"
     ],
     "relatedNodes": [
@@ -781,19 +804,19 @@
         "estados financieros",
         "certificado de tradición"
       ],
-      "fechas_limite": [
-        "2026-08-18"
+      "compromisos": [
+        "entrega de documentos antes del martes 18 de agosto"
       ],
       "categorizacion": {
         "category": "Mirador del Este",
         "urgency": "Alta",
-        "reason": "Recordatorio de documentación pendiente con fecha límite el 18 de agosto para desembolso de crédito constructor.",
+        "reason": "Recordatorio de documentación pendiente con fecha límite el 18 de agosto para desembolso de crédito; retraso implica aplazamiento.",
         "categoryColor": "#75619B",
         "urgencyColor": "#C95743",
         "urgencyRank": 1
       }
     },
-    "context": "El correo actual es un recordatorio de Lucía García de Bancolombia sobre documentación pendiente para el desembolso de un crédito constructor, con fecha límite el 18 de agosto. Se relaciona con el nodo 2, que trata el mismo asunto y menciona los mismos documentos y fecha límite."
+    "context": "El correo actual es un recordatorio de Lucía García (Bancolombia) sobre la documentación pendiente para el desembolso del crédito constructor del proyecto Mirador del Este. Se relaciona con el nodo 2, que trata sobre el mismo proyecto y la misma solicitud de documentos, con fecha límite el 18 de agosto. No hay evidencia de relación con otros nodos."
   },
   {
     "emailId": 2,
@@ -803,6 +826,7 @@
       "2026-08-20"
     ],
     "relatedNodes": [
+      16,
       24
     ],
     "keyValues": {
@@ -824,20 +848,19 @@
         "estados financieros",
         "certificado de tradición"
       ],
-      "fechas_limite": [
-        "2026-08-18",
-        "2026-08-20"
+      "compromisos": [
+        "entrega de documentos antes del martes 18 de agosto"
       ],
       "categorizacion": {
         "category": "Mirador del Este",
         "urgency": "Alta",
-        "reason": "Solicitud de documentos con fecha límite el 18 de agosto para evitar aplazamiento del desembolso.",
+        "reason": "Solicitud de documentos con fecha límite el 18 de agosto para desembolso de crédito; el comité se reúne el 20 de agosto y un retraso implica aplazamiento de un mes.",
         "categoryColor": "#75619B",
         "urgencyColor": "#C95743",
         "urgencyRank": 1
       }
     },
-    "context": "El correo actual trata sobre la documentación pendiente para el desembolso de un crédito constructor para el proyecto Mirador del Este. No hay evidencia de relación con el nodo candidato, que se refiere a una cotización de varilla para Torre Aurora. Son proyectos y asuntos distintos."
+    "context": "El correo actual solicita documentación para el desembolso de un crédito constructor para el proyecto Mirador del Este. No hay evidencia de relación con el nodo candidato, que trata sobre una cotización de varilla para el proyecto Torre Aurora. Por lo tanto, no se establecen nodos relacionados."
   },
   {
     "emailId": 25,
@@ -850,8 +873,7 @@
         "Sorteo Empresarial"
       ],
       "temas": [
-        "premio",
-        "reconocimiento",
+        "reconocimiento empresarial",
         "pago de inscripción"
       ],
       "valores": [
@@ -859,13 +881,13 @@
       ],
       "categorizacion": {
         "category": "Sin proyecto identificado",
-        "urgency": "Alta",
-        "reason": "Correo de posible fraude que solicita pago para un supuesto reconocimiento, requiere verificación.",
+        "urgency": "Baja",
+        "reason": "Correo de sorteo no relacionado con proyectos de la constructora; posible spam.",
         "categoryColor": "#817D76",
-        "urgencyColor": "#C95743",
-        "urgencyRank": 1
+        "urgencyColor": "#6A9C80",
+        "urgencyRank": 3
       }
     },
-    "context": "El correo actual es un mensaje no solicitado que ofrece un reconocimiento empresarial a cambio de un pago de inscripción. No hay evidencia de relación con los nodos candidatos, que tratan sobre pagos, cotizaciones, informes de avance o trámites administrativos en proyectos específicos. No hay contexto histórico suficiente."
+    "context": "El correo actual es una notificación de un sorteo empresarial que solicita un pago de inscripción para un reconocimiento. No se relaciona con ningún nodo del historial, ya que los nodos tratan sobre proyectos, pagos, facturas y otros asuntos de la constructora. No hay evidencia de conexión con ningún asunto previo."
   }
 ]
