@@ -10,6 +10,7 @@ type EmailListProps = {
   categoryFilter: string;
   categories: string[];
   error: string | null;
+  isLoading: boolean;
   onQueryChange: (query: string) => void;
   onCategoryChange: (category: string) => void;
   onSelectEmail: (email: ClassifiedEmail) => void;
@@ -24,6 +25,7 @@ export default function EmailList({
   categoryFilter,
   categories,
   error,
+  isLoading,
   onQueryChange,
   onSelectEmail,
   onCategoryChange,
@@ -71,7 +73,14 @@ export default function EmailList({
             <button type="button" onClick={onRetry}>Reintentar</button>
           </div>
         )}
-        {emails.map((email, index) => (
+        {isLoading && !error && (
+          <div className="inbox-loading" role="status" aria-live="polite">
+            <span className="loading-orbit" />
+            <strong>Categorizando correos</strong>
+            <p>Estamos clasificando la bandeja para mostrarte los mensajes ordenados.</p>
+          </div>
+        )}
+        {!isLoading && emails.map((email, index) => (
           <button
             key={email.id}
             className={`email-row ${email.id === selectedId ? "email-row-active" : ""}`}
@@ -99,7 +108,7 @@ export default function EmailList({
             {index < 4 && <span className="unread-dot" />}
           </button>
         ))}
-        {!emails.length && (
+        {!isLoading && !emails.length && !error && (
           <p className="empty-list">No encontramos correos con esa búsqueda.</p>
         )}
       </div>

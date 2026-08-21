@@ -16,6 +16,7 @@ export default function EmailWorkspace() {
   const [query, setQuery] = useState("");
   const [categoryFilter, setCategoryFilter] = useState("");
   const [inboxError, setInboxError] = useState<string | null>(null);
+  const [isInboxLoading, setIsInboxLoading] = useState(true);
   const [draft, setDraft] = useState("");
   const [requiresApproval, setRequiresApproval] = useState(false);
   const [approvalReason, setApprovalReason] = useState("");
@@ -49,6 +50,7 @@ export default function EmailWorkspace() {
 
   const loadEmails = useCallback(async () => {
     setInboxError(null);
+    setIsInboxLoading(true);
 
     try {
       const response = await fetch("/api/emails");
@@ -59,6 +61,8 @@ export default function EmailWorkspace() {
       if (data.emails[0]) void selectEmail(data.emails[0]);
     } catch {
       setInboxError("Revise el log del servidor para conocer la causa técnica y vuelva a intentarlo.");
+    } finally {
+      setIsInboxLoading(false);
     }
   }, [selectEmail]);
 
@@ -75,6 +79,9 @@ export default function EmailWorkspace() {
       })
       .catch(() => {
         setInboxError("Revise el log del servidor para conocer la causa técnica y vuelva a intentarlo.");
+      })
+      .finally(() => {
+        setIsInboxLoading(false);
       });
   }, [selectEmail]);
 
@@ -140,6 +147,7 @@ export default function EmailWorkspace() {
           categoryFilter={categoryFilter}
           categories={categories}
           error={inboxError}
+          isLoading={isInboxLoading}
           onQueryChange={setQuery}
           onCategoryChange={setCategoryFilter}
           onSelectEmail={(email) => void selectEmail(email)}

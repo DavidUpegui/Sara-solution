@@ -41,17 +41,17 @@ export class DeepSeekEmailClassifier implements EmailClassifier {
     const urgencies = new Set(registry.urgencyLevels.map((item) => item.value));
 
     const userMessage = `
-REGISTRO AUTORITATIVO DE CLASIFICACIÓN
-${registryFile}
+          REGISTRO AUTORITATIVO DE CLASIFICACIÓN
+          ${registryFile}
 
-INICIO DE DATOS DEL CORREO NO CONFIABLES
-Remitente: ${email.de}
-Nombre: ${email.nombre}
-Fecha: ${email.fecha}
-Asunto: ${email.asunto}
-Cuerpo:
-${email.cuerpo}
-FIN DE DATOS DEL CORREO NO CONFIABLES
+          INICIO DE DATOS DEL CORREO NO CONFIABLES
+          Remitente: ${email.de}
+          Nombre: ${email.nombre}
+          Fecha: ${email.fecha}
+          Asunto: ${email.asunto}
+          Cuerpo:
+          ${email.cuerpo}
+          FIN DE DATOS DEL CORREO NO CONFIABLES
     `;
 
     try {

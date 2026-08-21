@@ -71,6 +71,7 @@ button { cursor: pointer; }
 .inbox-tabs .tab-active { border-bottom: 2px solid var(--accent); color: var(--ink); font-weight: 700; }
 .email-list { max-height: 575px; overflow-y: auto; }
 .inbox-error { margin: 18px 16px; padding: 14px; border: 1px solid #edc4b8; border-radius: 6px; background: #fff1e8; color: #9c4e3c; font-size: 10px; line-height: 1.45; }.inbox-error strong { display: block; color: var(--ink); font-size: 11px; }.inbox-error p { margin: 5px 0 10px; }.inbox-error button { padding: 6px 9px; border: 1px solid #d9907d; border-radius: 4px; background: transparent; color: #9c4e3c; font-size: 10px; font-weight: 700; }
+.inbox-loading { display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 180px; padding: 24px 16px; text-align: center; }.inbox-loading strong { margin-top: 14px; font-size: 12px; }.inbox-loading p { margin-top: 7px; max-width: 200px; color: var(--muted); font-size: 10px; line-height: 1.5; }
 .email-row { position: relative; display: flex; width: 100%; gap: 10px; padding: 15px 19px; border: 0; border-bottom: 1px solid var(--line); background: transparent; color: var(--ink); text-align: left; transition: background .2s ease; }
 .email-row:hover { background: #f1ede6; }
 .email-row-active { background: var(--surface); box-shadow: inset 3px 0 var(--accent); }
