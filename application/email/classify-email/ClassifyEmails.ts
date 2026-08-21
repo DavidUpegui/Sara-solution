@@ -1,6 +1,27 @@
 import type { Email } from "@/domain/models/Email";
 import type { EmailClassification } from "@/domain/models/EmailClassification";
 import type { EmailClassifier } from "./EmailClassifier";
+import type { GetEmailContext } from "../history/GetEmailContext";
+
+function readPersistedClassification(
+  value: unknown,
+): EmailClassification | null {
+  if (!value || typeof value !== "object") return null;
+
+  const candidate = value as Partial<EmailClassification>;
+  if (
+    typeof candidate.category !== "string" ||
+    typeof candidate.urgency !== "string" ||
+    typeof candidate.reason !== "string" ||
+    typeof candidate.categoryColor !== "string" ||
+    typeof candidate.urgencyColor !== "string" ||
+    typeof candidate.urgencyRank !== "number"
+  ) {
+    return null;
+  }
+
+  return candidate as EmailClassification;
+}
 
 export class ClassifyEmails {
   private readonly cachedClassifications = new Map<
@@ -10,6 +31,7 @@ export class ClassifyEmails {
 
   constructor(
     private readonly emailClassifier: EmailClassifier,
+    private readonly getEmailContext: GetEmailContext,
     private readonly maxConcurrentClassifications = 3,
   ) {}
 
@@ -18,8 +40,21 @@ export class ClassifyEmails {
 
     if (cachedClassification) return cachedClassification;
 
-    const classification = this.emailClassifier
-      .classify({ email })
+    const classification = Promise.resolve()
+      .then(async () => {
+        const context = await this.getEmailContext.get(email);
+        const persisted = readPersistedClassification(
+          context.current.keyValues.categorizacion,
+        );
+        if (persisted) return persisted;
+
+        const generated = await this.emailClassifier.classify({
+          email,
+          context,
+        });
+        await this.getEmailContext.saveClassificationIfMissing(email.id, generated);
+        return generated;
+      })
       .catch((error: unknown) => {
         this.cachedClassifications.delete(email.id);
         throw error;
@@ -53,5 +88,20 @@ export class ClassifyEmails {
       ...email,
       classification: classifications[index],
     }));
+  }
+
+  async *executeSequential(
+    emails: Email[],
+  ): AsyncGenerator<Email & { classification: EmailClassification }> {
+    const orderedEmails = [...emails].sort(
+      (left, right) => new Date(left.fecha).getTime() - new Date(right.fecha).getTime(),
+    );
+
+    for (const email of orderedEmails) {
+      yield {
+        ...email,
+        classification: await this.classifyWithCache(email),
+      };
+    }
   }
 }

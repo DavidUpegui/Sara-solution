@@ -1,10 +1,12 @@
 import { EmailRepository } from "../get-email/EmailRepository";
 import { DraftGenerator } from "./DraftGenerator";
+import { GetEmailContext } from "../history/GetEmailContext";
 
 export class GenerateDraftForEmail {
   constructor(
     private readonly emailRepository: EmailRepository,
-    private readonly draftGenerator: DraftGenerator
+    private readonly draftGenerator: DraftGenerator,
+    private readonly getEmailContext: GetEmailContext,
   ) {}
 
   async execute(emailId: number) {
@@ -20,6 +22,7 @@ export class GenerateDraftForEmail {
       body: email.cuerpo,
       date: email.fecha,
       email: email.de,
+      context: await this.getEmailContext.get(email),
     });
 
     return draft;

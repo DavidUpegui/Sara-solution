@@ -11,6 +11,7 @@ type EmailListProps = {
   categories: string[];
   error: string | null;
   isLoading: boolean;
+  progress: { processed: number; total: number };
   onQueryChange: (query: string) => void;
   onCategoryChange: (category: string) => void;
   onSelectEmail: (email: ClassifiedEmail) => void;
@@ -26,6 +27,7 @@ export default function EmailList({
   categories,
   error,
   isLoading,
+  progress,
   onQueryChange,
   onSelectEmail,
   onCategoryChange,
@@ -76,11 +78,19 @@ export default function EmailList({
         {isLoading && !error && (
           <div className="inbox-loading" role="status" aria-live="polite">
             <span className="loading-orbit" />
-            <strong>Categorizando correos</strong>
-            <p>Estamos clasificando la bandeja para mostrarte los mensajes ordenados.</p>
+            <strong>
+              {progress.processed === 0
+                ? "Categorizando correos"
+                : `Clasificados ${progress.processed} de ${progress.total}`}
+            </strong>
+            <p>
+              {progress.total > progress.processed
+                ? `Faltan ${progress.total - progress.processed} correos por procesar.`
+                : "Estamos terminando de preparar la bandeja."}
+            </p>
           </div>
         )}
-        {!isLoading && emails.map((email, index) => (
+        {emails.map((email, index) => (
           <button
             key={email.id}
             className={`email-row ${email.id === selectedId ? "email-row-active" : ""}`}

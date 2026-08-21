@@ -24,7 +24,7 @@ export class DeepSeekEmailClassifier implements EmailClassifier {
     });
   }
 
-  async classify({ email }: ClassifyEmailRequest): Promise<EmailClassification> {
+  async classify({ email, context }: ClassifyEmailRequest): Promise<EmailClassification> {
     const [systemPrompt, registryFile] = await Promise.all([
       fs.readFile(
         path.join(process.cwd(), "infrastructure", "ai", "prompts", "classification-system-prompt.md"),
@@ -52,6 +52,10 @@ export class DeepSeekEmailClassifier implements EmailClassifier {
           Cuerpo:
           ${email.cuerpo}
           FIN DE DATOS DEL CORREO NO CONFIABLES
+
+              CONTEXTO HISTÓRICO DE REFERENCIA
+              ${JSON.stringify(context ?? { current: null, related: [] })}
+              FIN DEL CONTEXTO HISTÓRICO
     `;
 
     try {

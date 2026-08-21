@@ -1,4 +1,26 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+This is a Next.js email workspace for classifying emails and generating drafts with AI. The application can run locally or as a single production container.
+
+## Docker
+
+Create a local `.env.local` file with the required provider credentials, for example:
+
+```bash
+DEEPSEEK_API_KEY=your-key
+```
+
+Start the application and build the image with:
+
+```bash
+docker compose up --build
+```
+
+Open [http://localhost:3000](http://localhost:3000). The `data/` directory is mounted into the container so the email history survives container recreation. Stop it with:
+
+```bash
+docker compose down
+```
+
+The compose setup uses one container for the Next.js application and its server-side AI integrations. Credentials remain in `.env.local`, which is ignored by Git.
 
 ## Getting Started
 

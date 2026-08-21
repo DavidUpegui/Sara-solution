@@ -36,6 +36,10 @@ Asunto: ${request.subject}
 
 Cuerpo:
 ${request.body}
+
+CONTEXTO HISTÓRICO DE REFERENCIA
+${JSON.stringify(request.context ?? { current: null, related: [] })}
+FIN DEL CONTEXTO HISTÓRICO
     `;
 
     try {

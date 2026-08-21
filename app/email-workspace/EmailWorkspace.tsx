@@ -5,7 +5,11 @@ import type { ClassifiedEmail } from "@/domain/models/EmailClassification";
 import DraftWriter from "./DraftWriter";
 import EmailDetail from "./EmailDetail";
 import EmailList from "./EmailList";
-import type { DraftResponse, DraftStatus, EmailData } from "./types";
+import type {
+  DraftResponse,
+  DraftStatus,
+  EmailClassificationStreamEvent,
+} from "./types";
 
 const fallbackDraft =
   "Cordial saludo,\n\nGracias por escribirnos. Estamos revisando su solicitud con el equipo responsable y le confirmaremos el siguiente paso y la fecha de respuesta una vez validemos la información.\n\nQuedamos atentos.\n\nSara Ruiz\nAsistente de gerencia";
@@ -17,6 +21,7 @@ export default function EmailWorkspace() {
   const [categoryFilter, setCategoryFilter] = useState("");
   const [inboxError, setInboxError] = useState<string | null>(null);
   const [isInboxLoading, setIsInboxLoading] = useState(true);
+  const [inboxProgress, setInboxProgress] = useState({ processed: 0, total: 0 });
   const [draft, setDraft] = useState("");
   const [requiresApproval, setRequiresApproval] = useState(false);
   const [approvalReason, setApprovalReason] = useState("");
@@ -62,15 +67,44 @@ export default function EmailWorkspace() {
 
   const loadEmails = useCallback(async () => {
     setInboxError(null);
+    setEmails([]);
+    setSelectedId(null);
+    setInboxProgress({ processed: 0, total: 0 });
     setIsInboxLoading(true);
 
     try {
       const response = await fetch("/api/emails");
       if (!response.ok) throw new Error("El servicio de clasificación devolvió un error.");
 
-      const data = (await response.json()) as EmailData;
-      setEmails(data.emails);
-      if (data.emails[0]) setSelectedId(data.emails[0].id);
+      if (!response.body) throw new Error("El servicio no devolvió un flujo de clasificación.");
+
+      const reader = response.body.getReader();
+      const decoder = new TextDecoder();
+      let buffer = "";
+
+      const processLine = (line: string) => {
+        if (!line.trim()) return;
+        const event = JSON.parse(line) as EmailClassificationStreamEvent;
+        if (event.type === "email") {
+          setEmails((current) => [...current, event.email]);
+          setSelectedId((current) => current ?? event.email.id);
+          setInboxProgress({ processed: event.processed, total: event.total });
+        } else if (event.type === "progress" || event.type === "complete") {
+          setInboxProgress({ processed: event.processed, total: event.total });
+        } else if (event.type === "error") {
+          setInboxError(event.message);
+        }
+      };
+
+      while (true) {
+        const { value, done } = await reader.read();
+        buffer += decoder.decode(value, { stream: !done });
+        const lines = buffer.split("\n");
+        buffer = lines.pop() ?? "";
+        lines.forEach(processLine);
+        if (done) break;
+      }
+      processLine(buffer);
     } catch {
       setInboxError("Revise el log del servidor para conocer la causa técnica y vuelva a intentarlo.");
     } finally {
@@ -79,23 +113,10 @@ export default function EmailWorkspace() {
   }, []);
 
   useEffect(() => {
-    fetch("/api/emails")
-      .then((response) => {
-        if (!response.ok) throw new Error("El servicio de clasificación devolvió un error.");
-        return response.json() as Promise<EmailData>;
-      })
-      .then((data) => {
-        setInboxError(null);
-        setEmails(data.emails);
-        if (data.emails[0]) setSelectedId(data.emails[0].id);
-      })
-      .catch(() => {
-        setInboxError("Revise el log del servidor para conocer la causa técnica y vuelva a intentarlo.");
-      })
-      .finally(() => {
-        setIsInboxLoading(false);
-      });
-  }, [selectEmail]);
+    const load = () => void loadEmails();
+    const timer = window.setTimeout(load, 0);
+    return () => window.clearTimeout(timer);
+  }, [loadEmails]);
 
   const filteredEmails = useMemo(() => {
     const normalizedQuery = query.toLowerCase().trim();
@@ -109,6 +130,7 @@ export default function EmailWorkspace() {
     () => [...filteredEmails].sort((left, right) => left.classification.urgencyRank - right.classification.urgencyRank || new Date(left.fecha).getTime() - new Date(right.fecha).getTime()),
     [filteredEmails],
   );
+  const displayedEmails = isInboxLoading ? emails : sortedEmails;
   const selectedEmail = emails.find((email) => email.id === selectedId) ?? null;
   const categories = useMemo(
     () => [...new Set(emails.map((email) => email.classification.category))].sort(),
@@ -152,14 +174,15 @@ export default function EmailWorkspace() {
       </section>
       <section className="mail-workspace">
         <EmailList
-          emails={sortedEmails}
-          totalCount={emails.length}
+          emails={displayedEmails}
+          totalCount={inboxProgress.total || emails.length}
           selectedId={selectedId}
           query={query}
           categoryFilter={categoryFilter}
           categories={categories}
           error={inboxError}
           isLoading={isInboxLoading}
+          progress={inboxProgress}
           onQueryChange={setQuery}
           onCategoryChange={setCategoryFilter}
           onSelectEmail={selectEmail}
