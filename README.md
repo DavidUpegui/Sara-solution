@@ -2,25 +2,24 @@ This is a Next.js email workspace for classifying emails and generating drafts w
 
 ## Docker
 
-Create a local `.env.local` file with the required provider credentials, for example:
+The image is built without any API keys. Each person running the app must supply their own key at runtime via `.env.local` (which is ignored by Git).
 
 ```bash
-DEEPSEEK_API_KEY=your-key
-```
+# 1. Create your local environment file from the template and add your key
+cp .env.example .env.local
+# then edit .env.local and set DEEPSEEK_API_KEY to your own key
 
-Start the application and build the image with:
-
-```bash
+# 2. Build and start the application
 docker compose up --build
 ```
 
-Open [http://localhost:3000](http://localhost:3000). The `data/` directory is mounted into the container so the email history survives container recreation. Stop it with:
+Open [http://localhost:3000](http://localhost:3000). The email history lives inside the container, so it resets whenever the container is recreated. Stop it with:
 
 ```bash
 docker compose down
 ```
 
-The compose setup uses one container for the Next.js application and its server-side AI integrations. Credentials remain in `.env.local`, which is ignored by Git.
+The compose setup uses one container for the Next.js application and its server-side AI integrations. Credentials remain in `.env.local`, which is ignored by Git; `.env.example` documents the expected variables without exposing any values.
 
 ## Getting Started
 

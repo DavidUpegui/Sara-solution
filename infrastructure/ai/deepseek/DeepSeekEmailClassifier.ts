@@ -15,13 +15,14 @@ const fallbackCategory = "Sin proyecto identificado";
 const fallbackUrgency = "Media";
 
 export class DeepSeekEmailClassifier implements EmailClassifier {
-  private readonly client: OpenAI;
+  private _client: OpenAI | null = null;
 
-  constructor() {
-    this.client = new OpenAI({
+  private get client(): OpenAI {
+    this._client ??= new OpenAI({
       apiKey: process.env.DEEPSEEK_API_KEY,
       baseURL: 'https://api.deepseek.com/v1',
     });
+    return this._client;
   }
 
   async classify({ email, context }: ClassifyEmailRequest): Promise<EmailClassification> {

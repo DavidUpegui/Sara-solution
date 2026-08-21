@@ -6,13 +6,14 @@ import type { DraftRequest } from "@/application/email/generate-draft/DraftReque
 import type { GeneratedDraft } from "@/application/email/generate-draft/GeneratedDraft";
 
 export class DeepSeekDraftGenerator implements DraftGenerator {
-  private readonly client: OpenAI;
+  private _client: OpenAI | null = null;
 
-  constructor() {
-    this.client = new OpenAI({
+  private get client(): OpenAI {
+    this._client ??= new OpenAI({
       apiKey: process.env.DEEPSEEK_API_KEY,
       baseURL: "https://api.deepseek.com/v1", // URL base de DeepSeek
     });
+    return this._client;
   }
 
   async generate(request: DraftRequest): Promise<GeneratedDraft> {

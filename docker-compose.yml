@@ -1,5 +1,6 @@
 services:
   sara-solution:
+    container_name: sara-solution
     build:
       context: .
       dockerfile: Dockerfile

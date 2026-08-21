@@ -6,13 +6,14 @@ import type { EmailHistoryNode } from "@/domain/models/EmailHistoryNode";
 import type { EmailContextGenerator } from "@/application/email/history/EmailContextGenerator";
 
 export class DeepSeekEmailContextGenerator implements EmailContextGenerator {
-  private readonly client: OpenAI;
+  private _client: OpenAI | null = null;
 
-  constructor() {
-    this.client = new OpenAI({
+  private get client(): OpenAI {
+    this._client ??= new OpenAI({
       apiKey: process.env.DEEPSEEK_API_KEY,
       baseURL: "https://api.deepseek.com/v1",
     });
+    return this._client;
   }
 
   async generate(email: Email, candidates: EmailHistoryNode[]): Promise<EmailHistoryNode> {
