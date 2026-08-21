@@ -1,0 +1,45 @@
+{
+  "version": 1,
+  "categories": [
+    {
+      "value": "Torre Aurora",
+      "description": "Correo relacionado con el proyecto Torre Aurora.",
+      "color": "#2F6F7E"
+    },
+    {
+      "value": "Mirador del Este",
+      "description": "Correo relacionado con el proyecto Mirador del Este.",
+      "color": "#75619B"
+    },
+    {
+      "value": "Bosque 47",
+      "description": "Correo relacionado con el proyecto Bosque 47.",
+      "color": "#6A9C80"
+    },
+    {
+      "value": "Sin proyecto identificado",
+      "description": "No se identifica un proyecto en el correo.",
+      "color": "#817D76"
+    }
+  ],
+  "urgencyLevels": [
+    {
+      "value": "Alta",
+      "description": "Requiere atención inmediata.",
+      "rank": 1,
+      "color": "#C95743"
+    },
+    {
+      "value": "Media",
+      "description": "Requiere atención en un plazo razonable.",
+      "rank": 2,
+      "color": "#C58A42"
+    },
+    {
+      "value": "Baja",
+      "description": "Puede atenderse en un momento más conveniente.",
+      "rank": 3,
+      "color": "#6A9C80"
+    }
+  ]
+}

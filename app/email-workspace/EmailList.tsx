@@ -1,14 +1,19 @@
-import type { Email } from "@/domain/models/Email";
+import type { ClassifiedEmail } from "@/domain/models/EmailClassification";
 
 import { formatDate, getInitials } from "./emailFormatters";
 
 type EmailListProps = {
-  emails: Email[];
+  emails: ClassifiedEmail[];
   totalCount: number;
   selectedId: number | null;
   query: string;
+  categoryFilter: string;
+  categories: string[];
+  error: string | null;
   onQueryChange: (query: string) => void;
-  onSelectEmail: (email: Email) => void;
+  onCategoryChange: (category: string) => void;
+  onSelectEmail: (email: ClassifiedEmail) => void;
+  onRetry: () => void;
 };
 
 export default function EmailList({
@@ -16,8 +21,13 @@ export default function EmailList({
   totalCount,
   selectedId,
   query,
+  categoryFilter,
+  categories,
+  error,
   onQueryChange,
   onSelectEmail,
+  onCategoryChange,
+  onRetry,
 }: EmailListProps) {
   return (
     <aside className="inbox-panel">
@@ -38,6 +48,13 @@ export default function EmailList({
         />
         <kbd>⌘ K</kbd>
       </label>
+      <label className="category-filter">
+        <span>Proyecto</span>
+        <select value={categoryFilter} onChange={(event) => onCategoryChange(event.target.value)} aria-label="Filtrar por proyecto">
+          <option value="">Todos los proyectos</option>
+          {categories.map((category) => <option key={category} value={category}>{category}</option>)}
+        </select>
+      </label>
       <div className="inbox-tabs">
         <button className="tab-active">
           Todos <span>{totalCount}</span>
@@ -47,6 +64,13 @@ export default function EmailList({
         </button>
       </div>
       <div className="email-list">
+        {error && (
+          <div className="inbox-error" role="alert">
+            <strong>No se pudo cargar la bandeja</strong>
+            <p>{error}</p>
+            <button type="button" onClick={onRetry}>Reintentar</button>
+          </div>
+        )}
         {emails.map((email, index) => (
           <button
             key={email.id}
@@ -62,6 +86,14 @@ export default function EmailList({
                 <time>{formatDate(email.fecha)}</time>
               </span>
               <span className="email-subject">{email.asunto}</span>
+              <span className="email-labels">
+                <span className="category-badge" style={{ backgroundColor: email.classification.categoryColor }}>
+                  {email.classification.category}
+                </span>
+                <span className="urgency-badge" style={{ borderColor: email.classification.urgencyColor, color: email.classification.urgencyColor }}>
+                  {email.classification.urgency}
+                </span>
+              </span>
               <span className="email-excerpt">{email.cuerpo}</span>
             </span>
             {index < 4 && <span className="unread-dot" />}

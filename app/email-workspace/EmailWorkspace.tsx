@@ -1,7 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useMemo, useState } from "react";
-import type { Email } from "@/domain/models/Email";
+import type { ClassifiedEmail } from "@/domain/models/EmailClassification";
 import DraftWriter from "./DraftWriter";
 import EmailDetail from "./EmailDetail";
 import EmailList from "./EmailList";
@@ -11,15 +11,17 @@ const fallbackDraft =
   "Cordial saludo,\n\nGracias por escribirnos. Estamos revisando su solicitud con el equipo responsable y le confirmaremos el siguiente paso y la fecha de respuesta una vez validemos la información.\n\nQuedamos atentos.\n\nSara Ruiz\nAsistente de gerencia";
 
 export default function EmailWorkspace() {
-  const [emails, setEmails] = useState<Email[]>([]);
+  const [emails, setEmails] = useState<ClassifiedEmail[]>([]);
   const [selectedId, setSelectedId] = useState<number | null>(null);
   const [query, setQuery] = useState("");
+  const [categoryFilter, setCategoryFilter] = useState("");
+  const [inboxError, setInboxError] = useState<string | null>(null);
   const [draft, setDraft] = useState("");
   const [requiresApproval, setRequiresApproval] = useState(false);
   const [approvalReason, setApprovalReason] = useState("");
   const [draftStatus, setDraftStatus] = useState<DraftStatus>("idle");
 
-  const selectEmail = useCallback(async (email: Email) => {
+  const selectEmail = useCallback(async (email: ClassifiedEmail) => {
     setSelectedId(email.id);
     setDraft("");
     setRequiresApproval(false);
@@ -45,26 +47,54 @@ export default function EmailWorkspace() {
     }
   }, []);
 
+  const loadEmails = useCallback(async () => {
+    setInboxError(null);
+
+    try {
+      const response = await fetch("/api/emails");
+      if (!response.ok) throw new Error("El servicio de clasificación devolvió un error.");
+
+      const data = (await response.json()) as EmailData;
+      setEmails(data.emails);
+      if (data.emails[0]) void selectEmail(data.emails[0]);
+    } catch {
+      setInboxError("Revise el log del servidor para conocer la causa técnica y vuelva a intentarlo.");
+    }
+  }, [selectEmail]);
+
   useEffect(() => {
-    fetch("/correos-ejemplo.json")
-      .then((response) => response.json() as Promise<EmailData>)
-      .then((data) => {
-        setEmails(data.correos);
-        if (data.correos[0]) void selectEmail(data.correos[0]);
+    fetch("/api/emails")
+      .then((response) => {
+        if (!response.ok) throw new Error("El servicio de clasificación devolvió un error.");
+        return response.json() as Promise<EmailData>;
       })
-      .catch(() => setDraftStatus("error"));
+      .then((data) => {
+        setInboxError(null);
+        setEmails(data.emails);
+        if (data.emails[0]) void selectEmail(data.emails[0]);
+      })
+      .catch(() => {
+        setInboxError("Revise el log del servidor para conocer la causa técnica y vuelva a intentarlo.");
+      });
   }, [selectEmail]);
 
   const filteredEmails = useMemo(() => {
     const normalizedQuery = query.toLowerCase().trim();
-    if (!normalizedQuery) return emails;
-    return emails.filter((email) =>
-      [email.nombre, email.de, email.asunto, email.cuerpo].some((field) =>
-        field.toLowerCase().includes(normalizedQuery),
-      ),
-    );
-  }, [emails, query]);
+    return emails.filter((email) => {
+      const matchesQuery = !normalizedQuery || [email.nombre, email.de, email.asunto, email.cuerpo, email.classification.category, email.classification.urgency].some((field) => field.toLowerCase().includes(normalizedQuery));
+      const matchesCategory = !categoryFilter || email.classification.category === categoryFilter;
+      return matchesQuery && matchesCategory;
+    });
+  }, [categoryFilter, emails, query]);
+  const sortedEmails = useMemo(
+    () => [...filteredEmails].sort((left, right) => left.classification.urgencyRank - right.classification.urgencyRank || new Date(left.fecha).getTime() - new Date(right.fecha).getTime()),
+    [filteredEmails],
+  );
   const selectedEmail = emails.find((email) => email.id === selectedId) ?? null;
+  const categories = useMemo(
+    () => [...new Set(emails.map((email) => email.classification.category))].sort(),
+    [emails],
+  );
 
   return (
     <main className="workspace-shell">
@@ -103,12 +133,17 @@ export default function EmailWorkspace() {
       </section>
       <section className="mail-workspace">
         <EmailList
-          emails={filteredEmails}
+          emails={sortedEmails}
           totalCount={emails.length}
           selectedId={selectedId}
           query={query}
+          categoryFilter={categoryFilter}
+          categories={categories}
+          error={inboxError}
           onQueryChange={setQuery}
+          onCategoryChange={setCategoryFilter}
           onSelectEmail={(email) => void selectEmail(email)}
+          onRetry={() => void loadEmails()}
         />
         <EmailDetail email={selectedEmail} />
         <DraftWriter

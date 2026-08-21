@@ -1,6 +1,7 @@
-import type { Email } from "@/domain/models/Email";
+import type { ClassifiedEmail } from "@/domain/models/EmailClassification";
 
-export type EmailData = { correos: Email[] };
+export type EmailData = { emails: ClassifiedEmail[] };
+export type ClassifiedEmailItem = ClassifiedEmail;
 export type DraftStatus = "idle" | "loading" | "ready" | "error";
 
 export type DraftResponse = {

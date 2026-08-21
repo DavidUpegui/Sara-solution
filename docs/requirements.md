@@ -5,9 +5,9 @@
 | ID | Requirement | MVP status |
 |---|---|---|
 | FR-01 | The system must allow Sara to view received emails. | Partially implemented with fixture data |
-| FR-02 | The system must classify each email. | Pending |
-| FR-03 | The system must determine email urgency. | Pending |
-| FR-04 | The system must explain the classification. | Draft reason exists; classification reason pending |
+| FR-02 | The system must classify each email. | Implemented through `GET /api/emails` |
+| FR-03 | The system must determine email urgency. | Implemented with `Alta`, `Media`, and `Baja` registry values |
+| FR-04 | The system must explain the classification. | Implemented through `classification.reason` |
 | FR-05 | The system must extract relevant information. | Pending |
 | FR-06 | The system must generate a response draft. | Implemented through `/api/emails/draft` |
 | FR-07 | The draft must respect Aurora's tone and rules. | Prompt-driven; requires evaluation |

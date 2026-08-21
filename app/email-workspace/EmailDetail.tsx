@@ -1,8 +1,8 @@
-import type { Email } from "@/domain/models/Email";
+import type { ClassifiedEmail } from "@/domain/models/EmailClassification";
 
 import { formatDate, formatTime, getInitials } from "./emailFormatters";
 
-type EmailDetailProps = { email: Email | null };
+type EmailDetailProps = { email: ClassifiedEmail | null };
 
 export default function EmailDetail({ email }: EmailDetailProps) {
   if (!email)
@@ -23,6 +23,14 @@ export default function EmailDetail({ email }: EmailDetailProps) {
           Recibido el {formatDate(email.fecha)} a las {formatTime(email.fecha)}
         </p>
       </div>
+      <div className="detail-labels">
+        <span className="category-badge" style={{ backgroundColor: email.classification.categoryColor }}>
+          {email.classification.category}
+        </span>
+        <span className="urgency-badge" style={{ borderColor: email.classification.urgencyColor, color: email.classification.urgencyColor }}>
+          Urgencia {email.classification.urgency}
+        </span>
+      </div>
       <div className="sender-line">
         <span className="avatar avatar-large avatar-2">
           {getInitials(email.nombre)}
@@ -40,6 +48,10 @@ export default function EmailDetail({ email }: EmailDetailProps) {
             {sentence.endsWith(".") ? "" : "."}
           </p>
         ))}
+      </div>
+      <div className="classification-reason">
+        <strong>Razón de clasificación</strong>
+        <p>{email.classification.reason}</p>
       </div>
       <div className="message-footer">
         <span>Este correo fue seleccionado para revisión</span>

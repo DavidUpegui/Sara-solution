@@ -64,7 +64,7 @@ This is a target shape, not yet a repository contract. Before coding it, decide 
 ## Incremental implementation order
 
 1. Stabilize shared input/output types and fixture loading.
-2. Implement F1 classification with a finite category and urgency vocabulary.
+2. Implemented F1 classification with a finite category and urgency vocabulary through `GET /api/emails`.
 3. Implement F2 extraction with nullable fields.
 4. Extend F3 draft generation to consume structured context.
 5. Extend F4 inbox UI to show classification and extracted data.

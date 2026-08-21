@@ -50,11 +50,12 @@ The directory name `data-acces` is the current repository spelling and should no
 ## Frontend flow
 
 1. `app/page.tsx` renders `EmailWorkspace`.
-2. `EmailWorkspace` loads `/correos-ejemplo.json` in the browser.
-3. The workspace filters the loaded records locally and tracks the selected email.
-4. Selecting an email sends `POST /api/emails/draft` with `{ emailId }`.
-5. `DraftWriter` displays the returned `draft` in an editable textarea.
-6. `requiresApproval` and `reason` are displayed as approval metadata.
+2. `EmailWorkspace` loads classified emails from `GET /api/emails`.
+3. The workspace filters by text/project and orders records by urgency rank and date.
+4. `EmailList` displays category and urgency badges; `EmailDetail` displays the classification reason.
+5. Selecting an email sends `POST /api/emails/draft` with `{ emailId }`.
+6. `DraftWriter` displays the returned `draft` in an editable textarea.
+7. `requiresApproval` and the draft `reason` are displayed as approval metadata.
 
 The UI has loading, idle, ready, and error states. The discard and review/send controls are currently presentational and do not send or persist email.
 
@@ -94,7 +95,8 @@ interface GeneratedDraft {
 
 ## Known limitations and unknowns
 
-- F1 classification and F2 information extraction are not implemented yet.
+- F1 classification, urgency, reason, project filtering, and the enriched email endpoint are implemented.
+- F2 information extraction is not implemented yet.
 - F4 approval and rejection controls are currently presentational; they do not persist a review decision or send a response.
 - F5 README and demonstration deliverables still need to be completed.
 - The email JSON is sample/fixture data for the challenge and is not a real mailbox integration.

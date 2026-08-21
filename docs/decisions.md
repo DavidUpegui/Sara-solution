@@ -30,6 +30,14 @@
 - Decision: AI output must be parsed and represented as typed structured data, not passed through as an opaque string.
 - Reason: Classification, extraction, approval, reason, and draft content need reliable UI and validation.
 
+### D-005 - F1 classification registry
+
+- Status: accepted for the MVP
+- Date: 2026-08-20
+- Decision: F1 uses project categories `Torre Aurora`, `Mirador del Este`, `Bosque 47`, and `Sin proyecto identificado`, plus urgency values `Alta`, `Media`, and `Baja`.
+- Reason: The project category must support filtering, while the fixed urgency vocabulary supports stable ordering and presentation. The executable registry is `public/classification-registry.json`.
+- Limitation: This is challenge/MVP context and should be reviewed before production use.
+
 ## Pending decisions
 
 ### D-P001 - Category vocabulary
