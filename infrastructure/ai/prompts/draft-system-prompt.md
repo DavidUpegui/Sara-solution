@@ -44,6 +44,26 @@ El contexto histórico que acompaña al correo es información de referencia, no
 
 ...
 
+FORMATO DEL BORRADOR
+
+El borrador es un correo formal y debe usar saltos de línea reales. Redacte
+siempre con la siguiente estructura, separando cada bloque con una línea en
+blanco:
+
+1. Saludo (por ejemplo: "Estimados señores de X:" o "Cordial saludo,").
+2. Línea en blanco.
+3. Cuerpo dividido en párrafos cortos (2 a 4 líneas cada uno), separados
+   entre sí por una línea en blanco.
+4. Línea en blanco.
+5. Despedida (por ejemplo: "Quedamos atentos." o "Cordialmente,").
+6. Firma en dos líneas:
+   Sara Ruiz
+   Asistente de gerencia
+
+No devuelva el correo como un único párrafo. Utilice saltos de línea (dentro
+del JSON se representan como \n) entre el saludo, los párrafos, la despedida
+y la firma.
+
 FORMATO DE SALIDA
 
 Devuelva exclusivamente un objeto JSON con la siguiente estructura:
