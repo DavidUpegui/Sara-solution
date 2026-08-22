@@ -4,6 +4,19 @@ import type { EmailHistoryNode } from "@/domain/models/EmailHistoryNode";
 import type { EmailHistoryRepository } from "@/application/email/history/EmailHistoryRepository";
 import type { EmailClassification } from "@/domain/models/EmailClassification";
 
+function cosineSimilarity(a: number[], b: number[]): number {
+  let dot = 0;
+  let normA = 0;
+  let normB = 0;
+  for (let i = 0; i < a.length; i += 1) {
+    dot += a[i] * b[i];
+    normA += a[i] * a[i];
+    normB += b[i] * b[i];
+  }
+  if (normA === 0 || normB === 0) return 0;
+  return dot / (Math.sqrt(normA) * Math.sqrt(normB));
+}
+
 export class JsonEmailHistoryRepositoryAdapter implements EmailHistoryRepository {
   private readonly filePath = path.join(process.cwd(), "data", "email-history.json");
   private readonly temporaryFilePath = `${this.filePath}.tmp`;
@@ -30,18 +43,11 @@ export class JsonEmailHistoryRepositoryAdapter implements EmailHistoryRepository
     return nodes.find((node) => node.emailId === emailId) ?? null;
   }
 
-  async searchByTerms(terms: string[], limit: number): Promise<EmailHistoryNode[]> {
+  async searchSimilar(embedding: number[], limit: number): Promise<EmailHistoryNode[]> {
     const nodes = await this.readNodes();
-    const normalizedTerms = terms.map((term) => term.toLocaleLowerCase("es"));
     return nodes
-      .map((node) => ({
-        node,
-        score: normalizedTerms.reduce((score, term) => {
-          const searchable = JSON.stringify(node.keyValues).toLocaleLowerCase("es") + ` ${node.context.toLocaleLowerCase("es")}`;
-          return score + (searchable.includes(term) ? 1 : 0);
-        }, 0),
-      }))
-      .filter(({ score }) => score > 0)
+      .filter((node) => Array.isArray(node.embedding))
+      .map((node) => ({ node, score: cosineSimilarity(embedding, node.embedding as number[]) }))
       .sort((left, right) => right.score - left.score)
       .slice(0, limit)
       .map(({ node }) => node);

@@ -3,22 +3,11 @@ import type { EmailHistoryNode } from "@/domain/models/EmailHistoryNode";
 import type { EmailContext } from "./EmailContext";
 import type { EmailContextGenerator } from "./EmailContextGenerator";
 import type { EmailHistoryRepository } from "./EmailHistoryRepository";
+import type { EmailEmbedder } from "./EmailEmbedder";
 import type { EmailClassification } from "@/domain/models/EmailClassification";
 
-const stopWords = new Set([
-  "para", "como", "desde", "sobre", "entre", "este", "esta", "correo",
-  "buenos", "buenas", "dias", "días", "usted", "solicitud", "gracias",
-]);
-
-function extractTerms(email: Email): string[] {
-  const text = `${email.de} ${email.nombre} ${email.asunto} ${email.cuerpo}`
-    .toLocaleLowerCase("es")
-    .normalize("NFD")
-    .replace(/[\u0300-\u036f]/g, "");
-
-  return [...new Set(text.match(/[a-z0-9][a-z0-9@._-]{3,}/g) ?? [])]
-    .filter((term) => !stopWords.has(term))
-    .slice(0, 30);
+function buildEmbeddingText(email: Email): string {
+  return `${email.asunto}\n${email.cuerpo}`;
 }
 
 export class GetEmailContext {
@@ -27,6 +16,7 @@ export class GetEmailContext {
   constructor(
     private readonly historyRepository: EmailHistoryRepository,
     private readonly contextGenerator: EmailContextGenerator,
+    private readonly emailEmbedder: EmailEmbedder,
     private readonly candidateLimit = 8,
   ) {}
 
@@ -76,8 +66,8 @@ export class GetEmailContext {
       };
     }
 
-    const terms = extractTerms(email);
-    const candidates = await this.historyRepository.searchByTerms(terms, this.candidateLimit);
+    const embedding = await this.emailEmbedder.embed(buildEmbeddingText(email));
+    const candidates = await this.historyRepository.searchSimilar(embedding, this.candidateLimit);
     const generated = await this.contextGenerator.generate(email, candidates);
     const relatedIds = [...new Set(generated.relatedNodes)]
       .filter((id) => id !== email.id && candidates.some((candidate) => candidate.emailId === id));
@@ -88,6 +78,7 @@ export class GetEmailContext {
       relatedNodes: relatedIds,
       keyValues: generated.keyValues ?? {},
       context: generated.context.trim(),
+      embedding,
     };
 
     await this.historyRepository.save(node);

@@ -33,7 +33,11 @@ ${email.cuerpo}
 FIN DEL CORREO ACTUAL
 
 NODOS CANDIDATOS DE HISTORIAL
-${JSON.stringify(candidates)}
+${JSON.stringify(candidates.map((node) => {
+  const payload = { ...node };
+  delete payload.embedding;
+  return payload;
+}))}
 FIN DE LOS NODOS CANDIDATOS
 `;
 

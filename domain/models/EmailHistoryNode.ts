@@ -6,4 +6,5 @@ export interface EmailHistoryNode {
   relatedNodes: number[];
   keyValues: HistoryKeyValues;
   context: string;
+  embedding?: number[];
 }
