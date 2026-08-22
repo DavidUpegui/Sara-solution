@@ -118,6 +118,12 @@ export default function EmailList({
                 <span className="urgency-badge" style={{ borderColor: email.classification.urgencyColor, color: email.classification.urgencyColor }}>
                   {email.classification.urgency}
                 </span>
+                <span className="risk-badge" style={{ backgroundColor: email.classification.riskColor }}>
+                  {email.classification.risk}
+                </span>
+                <span className="relevance-badge" style={{ borderColor: email.classification.relevanceColor, color: email.classification.relevanceColor }}>
+                  {email.classification.relevance}
+                </span>
               </span>
               <span className="email-excerpt">{email.cuerpo}</span>
             </span>

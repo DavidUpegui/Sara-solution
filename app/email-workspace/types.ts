@@ -10,7 +10,8 @@ export type ClassifiedEmailItem = ClassifiedEmail;
 export type DraftStatus = "idle" | "loading" | "ready" | "error";
 
 export type DraftResponse = {
-	draft: string;
-	requiresApproval: boolean;
-	reason: string;
+  draft: string;
+  requiresApproval: boolean;
+  reason: string;
+  blocked?: boolean;
 };

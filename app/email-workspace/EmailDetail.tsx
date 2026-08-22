@@ -30,6 +30,12 @@ export default function EmailDetail({ email }: EmailDetailProps) {
         <span className="urgency-badge" style={{ borderColor: email.classification.urgencyColor, color: email.classification.urgencyColor }}>
           Urgencia {email.classification.urgency}
         </span>
+        <span className="risk-badge" style={{ backgroundColor: email.classification.riskColor }}>
+          Riesgo: {email.classification.risk}
+        </span>
+        <span className="relevance-badge" style={{ borderColor: email.classification.relevanceColor, color: email.classification.relevanceColor }}>
+          {email.classification.relevance}
+        </span>
       </div>
       <div className="sender-line">
         <span className="avatar avatar-large avatar-2">

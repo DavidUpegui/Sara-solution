@@ -5,6 +5,12 @@ export interface EmailClassification {
   categoryColor: string;
   urgencyColor: string;
   urgencyRank: number;
+  risk: string;
+  riskColor: string;
+  riskRank: number;
+  relevance: string;
+  relevanceColor: string;
+  relevanceRank: number;
 }
 
 export interface ClassifiedEmail {

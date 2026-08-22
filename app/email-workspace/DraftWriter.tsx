@@ -6,6 +6,7 @@ type DraftWriterProps = {
   requiresApproval: boolean;
   approvalReason: string;
   selectedId: number | null;
+  isBlocked: boolean;
   onGenerateDraft: () => void;
   onChange: (value: string) => void;
 };
@@ -16,6 +17,7 @@ export default function DraftWriter({
   requiresApproval,
   approvalReason,
   selectedId,
+  isBlocked,
   onGenerateDraft,
   onChange,
 }: DraftWriterProps) {
@@ -57,7 +59,18 @@ export default function DraftWriter({
           )}
         </div>
       )}
-      {(status === "ready" || status === "error") && (
+      {(status === "ready" || status === "error") && isBlocked && (
+        <div className="draft-fraud-warning" role="alert">
+          <span className="draft-fraud-icon">⚠</span>
+          <strong>Posible fraude detectado</strong>
+          <p>{approvalReason}</p>
+          <p className="draft-fraud-hint">
+            No se generó un borrador automático. Revise el correo con precaución
+            y no haga clic en enlaces ni comparta datos.
+          </p>
+        </div>
+      )}
+      {(status === "ready" || status === "error") && !isBlocked && (
         <>
           {status === "ready" && requiresApproval && approvalReason && (
             <div className="draft-notice">

@@ -82,7 +82,8 @@ export class JsonEmailHistoryRepositoryAdapter implements EmailHistoryRepository
       if (!node) return;
 
       const keyValues = node.keyValues ?? {};
-      if (keyValues.categorizacion) return;
+      const existing = keyValues.categorizacion as Partial<EmailClassification> | undefined;
+      if (existing && typeof existing.risk === "string" && typeof existing.relevance === "string") return;
 
       const nextNodes = nodes.map((item) => item.emailId === emailId
         ? {

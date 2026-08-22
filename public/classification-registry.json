@@ -41,5 +41,39 @@
       "rank": 3,
       "color": "#6A9C80"
     }
+  ],
+  "riskLevels": [
+    {
+      "value": "Fraudulento",
+      "description": "Posible fraude o phishing: no confiar en el remitente ni en los enlaces.",
+      "rank": 1,
+      "color": "#C95743"
+    },
+    {
+      "value": "Sospechoso",
+      "description": "Contenido dudoso que merece revisión antes de actuar.",
+      "rank": 2,
+      "color": "#C58A42"
+    },
+    {
+      "value": "Seguro",
+      "description": "Correo legítimo sin señales de fraude.",
+      "rank": 3,
+      "color": "#6A9C80"
+    }
+  ],
+  "relevanceLevels": [
+    {
+      "value": "Relevante",
+      "description": "Asunto que concierne a la empresa o a sus proyectos.",
+      "rank": 1,
+      "color": "#2F6F7E"
+    },
+    {
+      "value": "Poco relevante",
+      "description": "Correo que no requiere acción de la empresa (spam, publicidad o irrelevante).",
+      "rank": 2,
+      "color": "#817D76"
+    }
   ]
 }

@@ -25,6 +25,7 @@ export default function EmailWorkspace() {
   const [draft, setDraft] = useState("");
   const [requiresApproval, setRequiresApproval] = useState(false);
   const [approvalReason, setApprovalReason] = useState("");
+  const [isBlocked, setIsBlocked] = useState(false);
   const [draftStatus, setDraftStatus] = useState<DraftStatus>("idle");
   const [isResettingHistory, setIsResettingHistory] = useState(false);
 
@@ -33,6 +34,7 @@ export default function EmailWorkspace() {
     setDraft("");
     setRequiresApproval(false);
     setApprovalReason("");
+    setIsBlocked(false);
     setDraftStatus("idle");
   }, []);
 
@@ -42,6 +44,7 @@ export default function EmailWorkspace() {
     setDraft("");
     setRequiresApproval(false);
     setApprovalReason("");
+    setIsBlocked(false);
     setDraftStatus("loading");
 
     try {
@@ -54,6 +57,12 @@ export default function EmailWorkspace() {
       if (!response.ok) throw new Error("Draft request failed");
 
       const data = (await response.json()) as DraftResponse;
+      if (data.blocked) {
+        setIsBlocked(true);
+        setApprovalReason(data.reason);
+        setDraftStatus("ready");
+        return;
+      }
       setDraft(data.draft || fallbackDraft);
       setRequiresApproval(data.requiresApproval);
       setApprovalReason(data.reason);
@@ -212,6 +221,7 @@ export default function EmailWorkspace() {
           requiresApproval={requiresApproval}
           approvalReason={approvalReason}
           selectedId={selectedId}
+          isBlocked={isBlocked}
           onGenerateDraft={() => void generateDraft()}
           onChange={setDraft}
         />

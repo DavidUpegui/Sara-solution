@@ -15,7 +15,13 @@ function readPersistedClassification(
     typeof candidate.reason !== "string" ||
     typeof candidate.categoryColor !== "string" ||
     typeof candidate.urgencyColor !== "string" ||
-    typeof candidate.urgencyRank !== "number"
+    typeof candidate.urgencyRank !== "number" ||
+    typeof candidate.risk !== "string" ||
+    typeof candidate.riskColor !== "string" ||
+    typeof candidate.riskRank !== "number" ||
+    typeof candidate.relevance !== "string" ||
+    typeof candidate.relevanceColor !== "string" ||
+    typeof candidate.relevanceRank !== "number"
   ) {
     return null;
   }

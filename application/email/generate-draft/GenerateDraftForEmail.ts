@@ -1,6 +1,10 @@
 import { EmailRepository } from "../get-email/EmailRepository";
 import { DraftGenerator } from "./DraftGenerator";
 import { GetEmailContext } from "../history/GetEmailContext";
+import type { EmailClassification } from "@/domain/models/EmailClassification";
+
+const FRAUD_REASON =
+  "Este correo fue marcado como posible fraude. No se recomienda responder ni hacer clic en enlaces.";
 
 export class GenerateDraftForEmail {
   constructor(
@@ -16,13 +20,27 @@ export class GenerateDraftForEmail {
       throw new Error(`Email with id ${emailId} not found`);
     }
 
+    const context = await this.getEmailContext.get(email);
+
+    const classification = context.current.keyValues.categorizacion as
+      | Partial<EmailClassification>
+      | undefined;
+    if (classification?.risk === "Fraudulento") {
+      return {
+        draft: "",
+        requiresApproval: false,
+        reason: FRAUD_REASON,
+        blocked: true,
+      };
+    }
+
     const draft = await this.draftGenerator.generate({
       sender: email.de,
       subject: email.asunto,
       body: email.cuerpo,
       date: email.fecha,
       email: email.de,
-      context: await this.getEmailContext.get(email),
+      context,
     });
 
     return draft;
