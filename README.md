@@ -18,8 +18,11 @@ La aplicación puede ejecutarse tanto en local como en un único contenedor de p
   - [Arquitectura](#arquitectura)
   - [Modelo de IA (DeepSeek)](#modelo-de-ia-deepseek)
   - [Email history](#email-history)
+  - [Búsqueda semántica (embeddings)](#búsqueda-semántica-embeddings)
+  - [Riesgo y relevancia](#riesgo-y-relevancia)
   - [Categorías como proyectos](#categorías-como-proyectos)
   - [Por qué Docker](#por-qué-docker)
+- [Qué implementaría si tuviese más tiempo](#qué-implementaría-si-tuviese-más-tiempo)
 - [Explicación detallada de la arquitectura](#explicación-detallada-de-la-arquitectura)
 - [Programación agéntica](#programación-agéntica)
 
@@ -67,7 +70,7 @@ docker compose down         # detener y eliminar el contenedor
 docker compose logs -f      # seguir los logs en tiempo real
 ```
 
-> **Nota:** el historial de correos (`data/email-history.json`) vive dentro del contenedor y se reinicia al recrearlo. Es un comportamiento intencional: el historial es solo un mecanismo de caché y puede restablecerse desde la interfaz con el botón **"Borrar caché"**.
+> **Nota:** el historial de correos (`data/email-history.json`) vive dentro del contenedor y se reinicia al recrearlo. Es un comportamiento intencional: el historial es solo un mecanismo de caché y puede restablecerse desde la interfaz con el botón **"Borrar caché"**. Además, en el primer uso el modelo de embeddings (MiniLM, ~120 MB) se descarga dentro del contenedor.
 
 ### Directamente desde el repositorio
 
@@ -137,12 +140,33 @@ La apuesta fue deliberada: si se lograban buenos resultados con DeepSeek, modelo
 
 `email-history` actúa como una **base de datos de caché y contexto**. Surgió porque la información que se le pasaba al modelo no era suficiente para asignar categorías correctas ni para redactar borradores satisfactorios.
 
-Con este historial, el modelo puede acceder rápidamente:
+Cada correo procesado se guarda como un nodo (`EmailHistoryNode`) que incluye:
 
-- al **contexto** que se definió para cada correo durante su clasificación, y
-- a **correos relacionados**, para tener un panorama más completo al clasificar nuevos mensajes o redactar un borrador.
+- el **contexto** y las **entidades** (`keyValues`) extraídos por el modelo durante su clasificación,
+- la **clasificación** cacheada (`categorizacion`: categoría, urgencia, riesgo y relevancia), para no volver a llamar al modelo,
+- los **correos relacionados** (`relatedNodes`), que dan un panorama más completo al clasificar nuevos mensajes o redactar un borrador, y
+- un **embedding** (vector de 384 dimensiones) usado para la búsqueda semántica (ver la siguiente sección).
 
-A futuro, este historial podría migrarse a una **base de datos no relacional** para acelerar las búsquedas y mejorar el control general.
+El historial se construye de forma incremental: como la clasificación ocurre correo a correo, cada nuevo correo busca sus relacionados entre los ya procesados. A futuro, este historial podría migrarse a una **base de datos no relacional** para acelerar las búsquedas y mejorar el control general.
+
+### Búsqueda semántica (embeddings)
+
+Inicialmente, los correos relacionados se buscaban por **coincidencia de palabras clave** (stopwords, tokens, etc.). El problema es que dos correos que tratan de lo mismo con palabras distintas —o desde remitentes distintos— no se encontraban.
+
+Esa búsqueda se reemplazó por **embeddings**: cada correo se convierte en un vector de 384 dimensiones que representa su *significado*, usando el modelo local `paraphrase-multilingual-MiniLM-L12-v2` (transformers.js / `@huggingface/transformers`). Los correos relacionados se obtienen por **similitud de coseno** entre vectores, lo que permite relacionar mensajes semánticamente cercanos aunque no compartan palabras ni remitente.
+
+- El modelo corre **en local** (sin API ni costo por consulta) y descarga sus pesos (~120 MB) en el primer uso.
+- Los vectores se guardan en el propio `data/email-history.json` (campo `embedding`).
+- Como DeepSeek no ofrece embeddings, este es el único componente de IA que no usa DeepSeek.
+
+### Riesgo y relevancia
+
+Además de categoría y urgencia, la clasificación devuelve dos dimensiones nuevas para que Sara detecte correos peligrosos o poco relevantes:
+
+- **Riesgo** (`risk`): `Seguro`, `Sospechoso` o `Fraudulento`. Detecta intentos de phishing o fraude (solicitudes de credenciales, enlaces con ultimátum, etc.).
+- **Relevancia** (`relevance`): `Relevante` o `Poco relevante`. Separa los asuntos que requieren acción de la empresa del spam y la publicidad.
+
+Ambas dimensiones se validan contra el registro autoritativo (`classification-registry.json`) para evitar valores inventados. Una regla determinista fuerza que un correo `Fraudulento` siempre tenga urgencia `Alta`, y la generación de borrador queda **bloqueada** para correos fraudulentos: en lugar de un borrador automático, Sara ve una alerta.
 
 ### Categorías como proyectos
 
@@ -156,6 +180,36 @@ La categorización ideal requeriría más dimensiones que los simples proyectos 
 ### Por qué Docker
 
 Docker es una solución muy eficaz para exportar proyectos: elimina el clásico *"en mi máquina funcionaba"*, estandariza las versiones y permite ejecutar la aplicación de forma muy sencilla en cualquier entorno.
+
+---
+
+## Qué implementaría si tuviese más tiempo
+
+Ideas que quedaron fuera del alcance actual, ordenadas por impacto:
+
+### Persistencia del historial en una base de datos
+
+Hoy el historial vive en un único JSON (`data/email-history.json`) con una cola de escritura manual y lecturas que cargan todo el archivo en memoria. Con una base de datos real (por ejemplo, PostgreSQL con `pgvector`, o una NoSQL) se ganaría: búsqueda por vector nativa y más rápida, escrituras concurrentes seguras y persistencia real entre despliegues. La arquitectura de puertos y adaptadores ya permite este cambio tocando únicamente el adaptador de `EmailHistoryRepository`.
+
+### Separar el caché del historial del caché de las categorías
+
+Actualmente la clasificación se guarda *dentro* del nodo de historial (`keyValues.categorizacion`). Son dos cachés con ciclos de vida distintos: el historial es contexto que se va enriqueciendo, mientras que la categoría/urgencia/riesgo es un resultado puntual que podría revalidarse. Separarlos en dos almacenes (o al menos en dos estructuras) permitiría invalidar uno sin afectar al otro.
+
+### Definir mejor las categorías
+
+Las categorías hoy son fijas y equivalen a los proyectos. Lo ideal sería que la IA **proponga** categorías nuevas y que el usuario las **apruebe o descarte** (refuerzo humano): así el vocabulario crece con supervisión, sin que la IA invente categorías por su cuenta ni se dispare el consumo de tokens.
+
+### Mejores filtros en el front
+
+Hoy solo hay búsqueda por texto y filtro por proyecto. Se podrían añadir filtros por urgencia, riesgo y relevancia, ordenamientos configurables y una vista de "solo fraudes/sospechosos" para priorizar la revisión de seguridad.
+
+### Resumen contextual del correo con enlaces a otros correos
+
+El modelo ya genera un `context` para cada correo. Falta una vista en el front que muestre ese resumen junto con **enlaces navegables a los correos relacionados** (`relatedNodes`), para que Sara pueda saltar del correo actual a su conversación o proyecto sin buscarlo a mano.
+
+### Mejor estrategia para detectar fraudes y poca relevancia
+
+La detección actual es una dimensión más de la clasificación del modelo. Se podría reforzar con: listas de remitentes o dominios confiables, detección de enlaces sospechosos, heurísticas sobre el cuerpo (ultimátum, solicitudes de credenciales) y un umbral determinista que marque "Sospechoso" cuando coincidan varias señales, en lugar de depender únicamente del criterio del modelo.
 
 ---
 
@@ -177,19 +231,27 @@ public/           datos de ejemplo y assets públicos
 Contiene los **modelos de negocio** y los **contratos de dominio**, independientes de frameworks e infraestructura:
 
 - `Email.ts` — modelo del correo (`id`, `de`, `nombre`, `fecha`, `asunto`, `cuerpo`).
-- `EmailClassification.ts` — resultado de la clasificación (categoría, urgencia, razón y metadatos de color/rank).
-- `EmailHistoryNode.ts` — nodo del historial de un correo (`keyValues`, `relatedNodes`, `context`, etc.).
+- `EmailClassification.ts` — resultado de la clasificación (categoría, urgencia, razón, riesgo, relevancia y metadatos de color/rank).
+- `EmailHistoryNode.ts` — nodo del historial de un correo (`keyValues`, `relatedNodes`, `context`, `embedding`).
 
 Esta capa no importa nada de `infrastructure/` ni de `app/`.
 
 ### `application/`
 
-Contiene los **casos de uso** (lógica de negocio) y los **puertos** (interfaces que la aplicación define y que la infraestructura implementa):
+Contiene los **casos de uso** (lógica de negocio) y los **puertos** (interfaces que la aplicación define y que la infraestructura implementa).
 
-- `classify-email/` — `ClassifyEmails` (orquesta la clasificación, con caché) y el puerto `EmailClassifier`.
-- `generate-draft/` — `GenerateDraftForEmail`, `GenerateDraft`, el puerto `DraftGenerator` y el contrato `GeneratedDraft`.
+Cada dominio de aplicación (`classify-email/`, `generate-draft/`, `history/`) se organiza en tres carpetas:
+
+- `dto/` — objetos de datos de entrada/salida (p. ej. `ClassifyEmailRequest`, `DraftRequest`, `EmailContext`).
+- `ports/` — las interfaces que la infraestructura implementa.
+- `usecases/` — los casos de uso con la lógica de negocio.
+
+Desglose por área:
+
+- `classify-email/` — el use case `ClassifyEmails` (orquesta la clasificación, con caché) y el puerto `EmailClassifier`.
+- `generate-draft/` — los use cases `GenerateDraftForEmail` y `GenerateDraft`, el puerto `DraftGenerator` y los DTOs `DraftRequest`/`GeneratedDraft`.
 - `get-email/` — el puerto `EmailRepository` para obtener correos.
-- `history/` — `GetEmailContext`, `ResetEmailHistory`, y los puertos `EmailHistoryRepository` y `EmailContextGenerator`.
+- `history/` — los use cases `GetEmailContext`, `ResetEmailHistory` y `BackfillEmbeddings`, y los puertos `EmailHistoryRepository`, `EmailContextGenerator` y `EmailEmbedder`.
 
 Los casos de uso dependen únicamente de puertos, nunca de implementaciones concretas. Gracias a esto, cambiar de proveedor de IA o de almacenamiento no afecta a esta capa.
 
@@ -210,8 +272,9 @@ Aquí se decide *qué* implementación concreta se usa. Cambiar de proveedor o d
 
 Implementa los puertos definidos en `application/`:
 
-- `data-acces/json/` — `JsonEmailRepositoryAdapter` (lee `public/correos-ejemplo.json`) y `JsonEmailHistoryRepositoryAdapter` (lee/escribe `data/email-history.json`).
+- `data-acces/json/` — `JsonEmailRepositoryAdapter` (lee `public/correos-ejemplo.json`) y `JsonEmailHistoryRepositoryAdapter` (lee/escribe `data/email-history.json`, con búsqueda por similitud de coseno entre embeddings).
 - `ai/deepseek/` — `DeepSeekEmailClassifier`, `DeepSeekDraftGenerator` y `DeepSeekEmailContextGenerator` (usan el SDK de OpenAI apuntando a la URL base de DeepSeek).
+- `ai/embedding/` — `TransformersEmailEmbedder` (embeddings locales con MiniLM a través de `@huggingface/transformers`).
 - `ai/gemini/` — los adaptadores equivalentes para Gemini (empleados antes de la migración).
 - `ai/prompts/` — los *system prompts* en Markdown que lee cada adaptador.
 
@@ -224,6 +287,7 @@ Límite HTTP y presentación con Next.js App Router:
   - `GET /api/emails` — clasifica los correos en *streaming*.
   - `POST /api/emails/draft` — genera un borrador de respuesta.
   - `DELETE /api/emails/history` — borra la caché de historial.
+  - `POST /api/emails/history/backfill` — recalcula los embeddings de los correos ya historizados.
 
   Estas rutas traducen peticiones HTTP y **no** contienen lógica de repositorio ni de modelos de IA.
 - `email-workspace/` — componentes de cliente (`EmailWorkspace`, `EmailList`, `EmailDetail`, `DraftWriter`) y helpers de UI. El navegador solo se comunica con las rutas de `api/`; nunca importa `composition/` ni `infrastructure/`.
@@ -231,7 +295,7 @@ Límite HTTP y presentación con Next.js App Router:
 ### `public/`
 
 - `correos-ejemplo.json` — los 25 correos ficticios de ejemplo.
-- `classification-registry.json` — el vocabulario autoritativo de categorías y urgencias que el modelo debe respetar.
+- `classification-registry.json` — el vocabulario autoritativo (categorías, urgencias, niveles de riesgo y de relevancia) que el modelo debe respetar.
 
 ### Flujo de una clasificación
 
@@ -240,7 +304,9 @@ GET /api/emails
   -> JsonEmailRepositoryAdapter.findAll()            (infrastructure)
   -> ClassifyEmails.executeSequential()              (application)
        -> GetEmailContext.get()                      (application)
-            -> JsonEmailHistoryRepositoryAdapter     (infrastructure)
+            -> TransformersEmailEmbedder.embed()     (infrastructure, MiniLM)
+            -> JsonEmailHistoryRepositoryAdapter     (infrastructure, similitud coseno)
+            -> DeepSeekEmailContextGenerator         (infrastructure, contexto/relaciones)
        -> DeepSeekEmailClassifier.classify()         (infrastructure)
        -> JsonEmailHistoryRepositoryAdapter.save()   (infrastructure)
 ```
