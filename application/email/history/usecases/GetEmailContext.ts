@@ -1,9 +1,9 @@
 import type { Email } from "@/domain/models/Email";
 import type { EmailHistoryNode } from "@/domain/models/EmailHistoryNode";
-import type { EmailContext } from "./EmailContext";
-import type { EmailContextGenerator } from "./EmailContextGenerator";
-import type { EmailHistoryRepository } from "./EmailHistoryRepository";
-import type { EmailEmbedder } from "./EmailEmbedder";
+import type { EmailContext } from "../dto/EmailContext";
+import type { EmailContextGenerator } from "../ports/EmailContextGenerator";
+import type { EmailHistoryRepository } from "../ports/EmailHistoryRepository";
+import type { EmailEmbedder } from "../ports/EmailEmbedder";
 import type { EmailClassification } from "@/domain/models/EmailClassification";
 
 // Límites del grafo de correos relacionados.

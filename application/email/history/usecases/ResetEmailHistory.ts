@@ -1,6 +1,6 @@
-import type { EmailHistoryRepository } from "./EmailHistoryRepository";
+import type { EmailHistoryRepository } from "../ports/EmailHistoryRepository";
 import type { GetEmailContext } from "./GetEmailContext";
-import type { ClassifyEmails } from "../classify-email/ClassifyEmails";
+import type { ClassifyEmails } from "../../classify-email/ClassifyEmails";
 
 export class ResetEmailHistory {
   constructor(

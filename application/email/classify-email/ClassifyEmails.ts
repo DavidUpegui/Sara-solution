@@ -1,7 +1,7 @@
 import type { Email } from "@/domain/models/Email";
 import type { EmailClassification } from "@/domain/models/EmailClassification";
 import type { EmailClassifier } from "./EmailClassifier";
-import type { GetEmailContext } from "../history/GetEmailContext";
+import type { GetEmailContext } from "../history/usecases/GetEmailContext";
 
 function readPersistedClassification(
   value: unknown,

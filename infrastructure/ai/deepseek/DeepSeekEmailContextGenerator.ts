@@ -3,7 +3,7 @@ import fs from "fs/promises";
 import path from "path";
 import type { Email } from "@/domain/models/Email";
 import type { EmailHistoryNode } from "@/domain/models/EmailHistoryNode";
-import type { EmailContextGenerator } from "@/application/email/history/EmailContextGenerator";
+import type { EmailContextGenerator } from "@/application/email/history/ports/EmailContextGenerator";
 
 export class DeepSeekEmailContextGenerator implements EmailContextGenerator {
   private _client: OpenAI | null = null;

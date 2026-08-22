@@ -1,5 +1,5 @@
 import { pipeline } from "@huggingface/transformers";
-import type { EmailEmbedder } from "@/application/email/history/EmailEmbedder";
+import type { EmailEmbedder } from "@/application/email/history/ports/EmailEmbedder";
 
 const MODEL_ID = "Xenova/paraphrase-multilingual-MiniLM-L12-v2";
 

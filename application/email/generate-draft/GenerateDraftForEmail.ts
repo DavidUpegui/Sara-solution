@@ -1,6 +1,6 @@
 import { EmailRepository } from "../get-email/EmailRepository";
 import { DraftGenerator } from "./DraftGenerator";
-import { GetEmailContext } from "../history/GetEmailContext";
+import { GetEmailContext } from "../history/usecases/GetEmailContext";
 import type { EmailClassification } from "@/domain/models/EmailClassification";
 
 const FRAUD_REASON =

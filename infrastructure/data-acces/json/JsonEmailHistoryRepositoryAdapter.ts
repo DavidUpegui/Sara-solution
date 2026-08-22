@@ -1,7 +1,7 @@
 import { promises as fs } from "node:fs";
 import path from "node:path";
 import type { EmailHistoryNode } from "@/domain/models/EmailHistoryNode";
-import type { EmailHistoryRepository } from "@/application/email/history/EmailHistoryRepository";
+import type { EmailHistoryRepository } from "@/application/email/history/ports/EmailHistoryRepository";
 import type { EmailClassification } from "@/domain/models/EmailClassification";
 
 function cosineSimilarity(a: number[], b: number[]): number {

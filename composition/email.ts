@@ -6,9 +6,9 @@ import { DeepSeekDraftGenerator } from "@/infrastructure/ai/deepseek/DeepSeekDra
 import { DeepSeekEmailContextGenerator } from "@/infrastructure/ai/deepseek/DeepSeekEmailContextGenerator";
 import { TransformersEmailEmbedder } from "@/infrastructure/ai/embedding/TransformersEmailEmbedder";
 import { JsonEmailHistoryRepositoryAdapter } from "@/infrastructure/data-acces/json/JsonEmailHistoryRepositoryAdapter";
-import { GetEmailContext } from "@/application/email/history/GetEmailContext";
-import { ResetEmailHistory } from "@/application/email/history/ResetEmailHistory";
-import { BackfillEmbeddings } from "@/application/email/history/BackfillEmbeddings";
+import { GetEmailContext } from "@/application/email/history/usecases/GetEmailContext";
+import { ResetEmailHistory } from "@/application/email/history/usecases/ResetEmailHistory";
+import { BackfillEmbeddings } from "@/application/email/history/usecases/BackfillEmbeddings";
 
 const emailRepository = new JsonEmailRepositoryAdapter();
 const draftGenerator = new DeepSeekDraftGenerator();

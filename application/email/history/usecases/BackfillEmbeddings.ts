@@ -1,6 +1,6 @@
-import type { EmailRepository } from "../get-email/EmailRepository";
-import type { EmailEmbedder } from "./EmailEmbedder";
-import type { EmailHistoryRepository } from "./EmailHistoryRepository";
+import type { EmailRepository } from "../../get-email/EmailRepository";
+import type { EmailEmbedder } from "../ports/EmailEmbedder";
+import type { EmailHistoryRepository } from "../ports/EmailHistoryRepository";
 
 export class BackfillEmbeddings {
   constructor(
