@@ -1,4 +1,4 @@
-import type { EmailContext } from "../history/dto/EmailContext";
+import type { EmailContext } from "../../history/dto/EmailContext";
 
 export interface DraftRequest {
   sender: string;

@@ -1,6 +1,6 @@
-import { DraftGenerator } from "./DraftGenerator";
-import { DraftRequest } from "./DraftRequest";
-import type { GeneratedDraft } from "./GeneratedDraft";
+import { DraftGenerator } from "../ports/DraftGenerator";
+import { DraftRequest } from "../dto/DraftRequest";
+import type { GeneratedDraft } from "../dto/GeneratedDraft";
 
 export class GenerateDraft {
   constructor(

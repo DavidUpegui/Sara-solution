@@ -1,6 +1,6 @@
-import { DraftGenerator } from "@/application/email/generate-draft/DraftGenerator";
-import { DraftRequest } from "@/application/email/generate-draft/DraftRequest";
-import type { GeneratedDraft } from "@/application/email/generate-draft/GeneratedDraft";
+import { DraftGenerator } from "@/application/email/generate-draft/ports/DraftGenerator";
+import { DraftRequest } from "@/application/email/generate-draft/dto/DraftRequest";
+import type { GeneratedDraft } from "@/application/email/generate-draft/dto/GeneratedDraft";
 import { GoogleGenAI } from "@google/genai";
 
 import { promises as fs } from "node:fs";

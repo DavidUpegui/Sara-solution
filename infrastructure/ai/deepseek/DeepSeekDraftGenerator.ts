@@ -1,9 +1,9 @@
 import OpenAI from "openai";
 import fs from "fs/promises";
 import path from "path";
-import type { DraftGenerator } from "@/application/email/generate-draft/DraftGenerator";
-import type { DraftRequest } from "@/application/email/generate-draft/DraftRequest";
-import type { GeneratedDraft } from "@/application/email/generate-draft/GeneratedDraft";
+import type { DraftGenerator } from "@/application/email/generate-draft/ports/DraftGenerator";
+import type { DraftRequest } from "@/application/email/generate-draft/dto/DraftRequest";
+import type { GeneratedDraft } from "@/application/email/generate-draft/dto/GeneratedDraft";
 
 export class DeepSeekDraftGenerator implements DraftGenerator {
   private _client: OpenAI | null = null;

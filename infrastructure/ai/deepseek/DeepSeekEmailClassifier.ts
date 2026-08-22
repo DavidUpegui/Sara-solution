@@ -3,8 +3,8 @@ import path from "node:path";
 import OpenAI from 'openai';
 
 import type { EmailClassification } from "@/domain/models/EmailClassification";
-import type { ClassifyEmailRequest } from "@/application/email/classify-email/ClassifyEmailRequest";
-import type { EmailClassifier } from "@/application/email/classify-email/EmailClassifier";
+import type { ClassifyEmailRequest } from "@/application/email/classify-email/dto/ClassifyEmailRequest";
+import type { EmailClassifier } from "@/application/email/classify-email/ports/EmailClassifier";
 
 interface ClassificationRegistry {
   categories: Array<{ value: string; color: string }>;

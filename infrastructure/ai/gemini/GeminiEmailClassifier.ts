@@ -2,8 +2,8 @@ import { promises as fs } from "node:fs";
 import path from "node:path";
 
 import type { EmailClassification } from "@/domain/models/EmailClassification";
-import type { ClassifyEmailRequest } from "@/application/email/classify-email/ClassifyEmailRequest";
-import type { EmailClassifier } from "@/application/email/classify-email/EmailClassifier";
+import type { ClassifyEmailRequest } from "@/application/email/classify-email/dto/ClassifyEmailRequest";
+import type { EmailClassifier } from "@/application/email/classify-email/ports/EmailClassifier";
 import { GoogleGenAI } from "@google/genai";
 
 interface ClassificationRegistry {
