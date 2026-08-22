@@ -43,13 +43,17 @@ cd Sara-solution
 
 **2. Configura las credenciales**
 
-La imagen se construye **sin** ninguna API key (nunca se incrustan secretos en la imagen). Cada persona debe aportar la suya en tiempo de ejecución:
+La imagen se construye **sin** ninguna API key (nunca se incrustan secretos en la imagen). Cada persona debe aportar la suya en tiempo de ejecución creando un archivo de configuración local llamado `.env.local`.
+
+La forma más sencilla de crearlo es **duplicar el archivo de ejemplo `.env.example` y renombrar la copia a `.env.local`**. Eso es exactamente lo que hace el siguiente comando:
 
 ```bash
 cp .env.example .env.local
 ```
 
-Edita `.env.local` y reemplaza el valor de `DEEPSEEK_API_KEY` por tu propia key. Este archivo está ignorado por Git, por lo que nunca se comparte ni se versiona.
+Si prefieres no usar la terminal, puedes hacerlo desde el explorador de archivos: copia el archivo `.env.example`, pega la copia y renómbrala como `.env.local`.
+
+Luego abre `.env.local` con cualquier editor de texto y reemplaza el valor de `DEEPSEEK_API_KEY` por tu propia key. Este archivo está ignorado por Git, por lo que nunca se comparte ni se versiona.
 
 **3. Construye y levanta el contenedor**
 
@@ -93,11 +97,13 @@ npm install
 
 **2. Configura el entorno**
 
+Crea tu archivo de configuración local duplicando el archivo de ejemplo y renombrándolo:
+
 ```bash
 cp .env.example .env.local
 ```
 
-Reemplaza `DEEPSEEK_API_KEY` por tu propia key.
+Es decir: **copia el archivo `.env.example` y ponle el nombre `.env.local`** (puedes hacerlo desde la terminal con el comando de arriba o desde el explorador de archivos). Luego ábrelo con cualquier editor de texto y reemplaza `DEEPSEEK_API_KEY` por tu propia key.
 
 **3. Levanta el servidor de desarrollo**
 
