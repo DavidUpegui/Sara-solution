@@ -85,7 +85,7 @@ docker compose logs -f      # seguir los logs en tiempo real
 | Node.js     | 22 (LTS) o superior |
 | npm         | se incluye con Node |
 
-> El `Dockerfile` fija `node:22-alpine`; el proyecto fue desarrollado y probado con Node 24 y npm 11.
+> El `Dockerfile` usa `node:22` (Debian, glibc) porque `onnxruntime-node` no publica binarios para Alpine (musl). El proyecto fue desarrollado y probado con Node 24 y npm 11.
 
 **1. Clona e instala las dependencias**
 
@@ -216,6 +216,14 @@ El modelo ya genera un `context` para cada correo. Falta una vista en el front q
 ### Mejor estrategia para detectar fraudes y poca relevancia
 
 La detección actual es una dimensión más de la clasificación del modelo. Se podría reforzar con: listas de remitentes o dominios confiables, detección de enlaces sospechosos, heurísticas sobre el cuerpo (ultimátum, solicitudes de credenciales) y un umbral determinista que marque "Sospechoso" cuando coincidan varias señales, en lugar de depender únicamente del criterio del modelo.
+
+### Mejorar la velocidad
+
+La clasificación es secuencial y cada correo espera varias llamadas (contexto, embedding, modelo). El cuello de botella está ligado a la latencia del modelo y a las horas de mayor concurrencia. Se podría paralelizar más agresivamente, cachear resultados, usar modelos más pequeños o rápidos para tareas auxiliares, y calentar el modelo de embeddings al arrancar para no esperar la primera carga.
+
+### Mostrar el progreso de la categorización
+
+Hoy el usuario debe esperar a que se lean todos los correos para ver la bandeja completa. Lo ideal sería una vista incremental que distinga los correos **ya analizados** de los **pendientes**, mostrándolos a medida que se van clasificando —con su estado en tiempo real—, sin bloquear la interfaz hasta terminar. Así Sara puede empezar a trabajar de inmediato mientras el resto sigue procesándose.
 
 ---
 
